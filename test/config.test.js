@@ -19,13 +19,13 @@ test('names compare without case, accents nor punctuation', () => {
 
 test('points: lake, coordinates and an optional name', () => {
   const { points, invalid } = parsePoints(
-    'Léman: 46.21074, 6.16131 Bains des Pâquis; annecy:45.86 6.17\nLéman: 46.21074, 6.16131; nowhere; Léman: 95, 6',
+    'Léman: 46.21074, 6.16131 Bains des Pâquis; annecy:45.86 6.17\nLéman: 46.21074, 6.16131; nowhere; Léman: 95, 6; Léman: 46,2107, 6,1613',
   );
   assert.deepEqual(points, [
     { lake: 'Léman', lat: 46.2107, lng: 6.1613, label: 'Bains des Pâquis' },
     { lake: 'annecy', lat: 45.86, lng: 6.17, label: null },
   ]);
-  assert.deepEqual(invalid, ['nowhere', 'Léman: 95, 6']);
+  assert.deepEqual(invalid, ['nowhere', 'Léman: 95, 6', 'Léman: 46,2107, 6,1613']);
 });
 
 test('normalized configuration: defaults and unknown values', () => {

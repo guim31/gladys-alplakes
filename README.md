@@ -45,7 +45,8 @@ guide: [docs/en.md](docs/en.md) ([fr](docs/fr.md), [de](docs/de.md),
 - Every hour, the values at the current time are computed from the series kept
   (linear between two steps) and only the changes are published.
 - A failed request keeps the last series: the forecast stays usable, and the
-  connection status says Alplakes does not answer.
+  connection status says Alplakes does not answer. A failed try waits 3 hours
+  like a success, and a 429 stops the refresh until the next one.
 
 ## Limitations
 

@@ -101,7 +101,8 @@ export function parseSeries(times, values) {
 
 /**
  * The names of a lake in the four languages, from the website entry (if any):
- * `{ names, lakeNames }`, the second without the basin ("Lake Zurich").
+ * `{ names, lakeNames, aliases }`: the second without the basin ("Lake
+ * Zurich"), the third the other names searched (Italian: "Lago Lemano").
  */
 export function lakeNames(key, websiteEntries) {
   const [websiteKey, basin] = BASINS[key] ?? [key, null];
@@ -113,19 +114,21 @@ export function lakeNames(key, websiteEntries) {
     de: entry?.name?.DE || entry?.name?.EN || fallback,
     es: SPANISH[websiteKey] || entry?.name?.EN || fallback,
   };
+  const aliases = entry?.name?.IT ? [entry.name.IT] : [];
   if (!basin) {
-    return { names: base, lakeNames: base };
+    return { names: base, lakeNames: base, aliases };
   }
   return {
     names: Object.fromEntries(LANGS.map((lang, i) => [lang, `${base[lang]} (${basin[i]})`])),
     lakeNames: base,
+    aliases,
   };
 }
 
 /**
  * The catalogue: a Map of the Simstrat lakes, by key, each with its names, its
  * countries, the end of its forecast and its 3D model (null if none):
- * `{ key, names, lakeNames, countries, endDate, model3d: { model, key } | null }`.
+ * `{ key, names, lakeNames, aliases, countries, endDate, model3d: { model, key } | null }`.
  */
 export function buildCatalogue(meta1d, meta3d, websiteList, now) {
   const website = new Map(
@@ -168,10 +171,21 @@ export function buildCatalogue(meta1d, meta3d, websiteList, now) {
   return lakes;
 }
 
+// Articles and generic words of the lake names, ignored on both sides:
+// "Lac Léman", "Le Léman" and "Léman" are the same lake.
+const STOP_WORDS = new Set(
+  'the le la les l lac lacs lake lago laghetto di de del della d du des see'.split(' '),
+);
+const meaningful = (text) =>
+  normalizeName(text)
+    .split(' ')
+    .filter((word) => word && !STOP_WORDS.has(word));
+
 /**
- * The lakes a name designates: the key, or a name in any language (with or
- * without its article: "Léman", "Le Léman", "Lake Geneva"). An exact match
- * wins; otherwise every lake whose name contains all the words.
+ * The lakes a name designates: the key, or a name in any language, Italian
+ * included, with or without its article ("Léman", "Lac Léman", "Lake Geneva",
+ * "Lago di Garda"). An exact match wins; otherwise every lake whose names hold
+ * all the words.
  */
 export function findLakes(catalogue, text) {
   const wanted = normalizeName(text);
@@ -179,24 +193,24 @@ export function findLakes(catalogue, text) {
     return [];
   }
   const lakes = [...catalogue.values()];
-  const strip = (name) =>
-    normalizeName(name).replace(
-      /^(the |le |la |l |lac d |lac de |lac du |lac des |lake |lago di |lago de |lago del |lago |lac )/,
-      '',
-    );
+  const allNames = (lake) => [...Object.values(lake.names), ...(lake.aliases ?? [])];
+  const core = meaningful(wanted).join(' ');
   const exact = lakes.filter(
     (lake) =>
-      lake.key === wanted ||
-      Object.values(lake.names).some(
-        (name) => normalizeName(name) === wanted || strip(name) === wanted,
+      lake.key === wanted.replace(/ /g, '') ||
+      allNames(lake).some(
+        (name) => normalizeName(name) === wanted || (core && meaningful(name).join(' ') === core),
       ),
   );
   if (exact.length > 0) {
     return exact;
   }
-  const words = wanted.split(' ');
+  const words = meaningful(wanted);
+  if (words.length === 0) {
+    return [];
+  }
   return lakes.filter((lake) => {
-    const haystack = normalizeName(`${lake.key} ${Object.values(lake.names).join(' ')}`);
+    const haystack = normalizeName(`${lake.key} ${allNames(lake).join(' ')}`);
     return words.every((word) => haystack.includes(word));
   });
 }

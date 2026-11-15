@@ -27,7 +27,7 @@ export class HttpError extends Error {
  * @param {number} [options.timeoutMs]
  * @returns {Promise<unknown>}
  */
-export async function getJson(fetchImpl, url, { timeoutMs = 30000 } = {}) {
+export async function getJson(fetchImpl, url, { timeoutMs = 15000 } = {}) {
   const host = new URL(url).host;
   let response;
   try {

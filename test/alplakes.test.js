@@ -66,6 +66,12 @@ test('lakes are found by key or by name, in any language, with or without the ar
   assert.deepEqual(keys('Thunersee'), ['thun']);
   assert.deepEqual(keys('Zurich').sort(), ['lowerzurich', 'upperzurich']);
   assert.deepEqual(keys('upperzurich'), ['upperzurich']);
+  assert.deepEqual(keys('Lac Léman'), ['geneva']);
+  assert.deepEqual(keys('Lago Lemano'), ['geneva']);
+  assert.deepEqual(keys('Lago di Garda'), ['garda']);
+  assert.deepEqual(keys("Lago d'Iseo"), ['iseo']);
+  assert.deepEqual(keys('Lac des Quatre-Cantons').length, 4);
+  assert.deepEqual(keys('lac'), []);
   assert.deepEqual(keys('Atlantis'), []);
   assert.deepEqual(keys('  '), []);
 });

@@ -283,3 +283,9 @@ long, et sur un « Sie »/« Ihr… » de politesse en allemand. Le store exige 
 - Un seul déclencheur `threshold_crossed` (seuils entiers 10–28 °C, valeur actuelle ou max 48 h,
   hystérésis 0,3 °C) : sa valeur ajoutée sur le déclencheur d'appareil du cœur est l'hystérésis, la
   prévision et le nom du lac en variable. Un filtre `multi_select` reçoit le nombre converti en chaîne.
+- Relecture du 15/11 : un essai raté (panne, 429, lac sans données) attend 3 h comme un succès (`tried`
+  dans `/data`), un 429 arrête la tournée ; les états partent des séries gardées **avant** les requêtes
+  (un Alplakes lent ne retarde rien) ; la profondeur est gardée dans `/data` (séries jetées si elle a
+  changé pendant l'arrêt) ; une découverte ou un état de connexion refusés sont renvoyés au passage
+  suivant ; la recherche ignore articles et mots génériques des deux côtés (« Lac Léman », « Lago di
+  Garda ») et lit aussi les noms italiens ; des coordonnées à virgule décimale sont refusées, pas mal lues.

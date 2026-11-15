@@ -102,6 +102,7 @@ export class Monitor {
     this.targets = new Map();
     this.problems = emptyProblems();
     this.statusMessage = undefined;
+    this.publishedDiscovery = null;
     this.tickTimer = null;
     this.running = null;
     this.rerun = null;
@@ -137,6 +138,13 @@ export class Monitor {
     if (saved?.version === 1) {
       this.data = { ...emptyData(), ...saved };
     }
+    if (this.data.depth !== config.depth) {
+      // Series saved at another depth (changed while stopped) are worthless.
+      this.data.forecasts = {};
+      this.data.sides = {};
+      this.data.tried = {};
+    }
+    this.data.depth = config.depth;
     // Scheduled first: a failure below must not leave the integration without ticks.
     this.schedule();
     await this.runTick();
@@ -149,7 +157,8 @@ export class Monitor {
     if (!this.tickTimer) {
       this.schedule();
     }
-    await this.publishDiscovered();
+    // A failure is retried by the next tick.
+    await this.publishDiscovered().catch(() => {});
     this.statusMessage = undefined;
     await this.updateConnectionStatus();
     this.gladys.forgetPublishedStates?.();
@@ -165,7 +174,9 @@ export class Monitor {
       // The series of the old depth are worthless: ask everything again.
       this.data.forecasts = {};
       this.data.sides = {};
+      this.data.tried = {};
     }
+    this.data.depth = config.depth;
     // A tick already running reads the old configuration: run another one after it.
     await this.runTick({ again: true });
     const after = [...this.targets.keys()];
@@ -348,7 +359,7 @@ export class Monitor {
       this.data.known[key] = target;
     }
     // Forget what belongs to targets no longer followed.
-    for (const map of [this.data.known, this.data.forecasts, this.data.sides]) {
+    for (const map of [this.data.known, this.data.forecasts, this.data.tried, this.data.sides]) {
       for (const key of Object.keys(map)) {
         if (!targets.has(key)) {
           delete map[key];
@@ -368,7 +379,15 @@ export class Monitor {
   }
 
   async publishDiscovered() {
-    await this.gladys.publishDiscoveredDevices(this.discoveredDevices());
+    const devices = this.discoveredDevices();
+    try {
+      await this.gladys.publishDiscoveredDevices(devices);
+      this.publishedDiscovery = JSON.stringify(devices);
+    } catch (err) {
+      // Published again at the next tick.
+      this.publishedDiscovery = null;
+      throw err;
+    }
   }
 
   async updateConnectionStatus() {
@@ -405,8 +424,13 @@ export class Monitor {
     if (key === this.statusMessage) {
       return;
     }
-    this.statusMessage = key;
-    await this.gladys.setConnectionStatus(connected, message).catch(() => {});
+    try {
+      await this.gladys.setConnectionStatus(connected, message);
+      this.statusMessage = key;
+    } catch (err) {
+      // Sent again at the next tick.
+      logger.debug(`Connection status refused: ${err.message}`);
+    }
   }
 
   // --- Gladys events ---------------------------------------------------------------
@@ -467,12 +491,21 @@ export class Monitor {
   }
 
   async tick() {
-    const before = JSON.stringify(this.discoveredDevices());
     await this.ensureCatalogue();
     this.resolveTargets();
+    // The values from the series kept first: a slow Alplakes must not delay them.
+    await this.publishStates(this.createdKeys());
     await this.fetchDue();
-    if (JSON.stringify(this.discoveredDevices()) !== before) {
-      await this.publishDiscovered();
+    if (JSON.stringify(this.discoveredDevices()) !== this.publishedDiscovery) {
+      await this.publishDiscovered()
+        .then(() => this.recovered('discovery', 'Publishing the discovered devices works again'))
+        .catch((err) =>
+          this.failed(
+            'discovery',
+            'warn',
+            `Publishing the discovered devices failed: ${err.message}`,
+          ),
+        );
     }
     const created = this.createdKeys();
     await this.publishStates(created);
@@ -488,22 +521,32 @@ export class Monitor {
   /** Ask Alplakes again for the targets whose series is older than 3 hours (or missing). */
   async fetchDue() {
     const now = this.now();
-    // A minute of slack: the hourly ticks drift by a few milliseconds.
+    // Asked again 3 hours after the last series, or after the last try: a
+    // failure (outage, 429, lake without data) waits as long as a success. A
+    // minute of slack: the hourly ticks drift by a few milliseconds.
     const due = [...this.targets.entries()].filter(([key]) => {
-      const forecast = this.data.forecasts[key];
-      return !forecast || now - forecast.at >= this.timings.fetchMs - 60000;
+      const last = Math.max(
+        this.data.forecasts[key]?.at ?? -Infinity,
+        this.data.tried[key] ?? -Infinity,
+      );
+      return now - last >= this.timings.fetchMs - 60000;
     });
     if (due.length === 0) {
       return;
+    }
+    for (const [key] of due) {
+      this.data.tried[key] = now;
     }
     // Rounded to the hour: the same window for every target of a refresh.
     const from = Math.floor((now - this.timings.pastMs) / HOUR) * HOUR;
     const to = Math.ceil((now + this.timings.aheadMs) / HOUR) * HOUR;
     let outages = 0;
+    let attempts = 0;
     for (const [index, [key, target]] of due.entries()) {
       if (index > 0 && this.timings.gapMs > 0) {
         await new Promise((resolve) => setTimeout(resolve, this.timings.gapMs));
       }
+      attempts += 1;
       try {
         const depth = this.config.depth;
         let series;
@@ -534,10 +577,14 @@ export class Monitor {
         } else {
           outages += 1;
           logger.debug(`${this.displayName(key, 'en')}: ${err.message}`);
+          if (err.status === 429) {
+            // Rate-limited: the other targets wait for the next refresh.
+            break;
+          }
         }
       }
     }
-    if (outages === due.length) {
+    if (outages === attempts) {
       this.failed('readings', 'warn', 'Alplakes unreachable: the last forecasts are kept');
     } else {
       this.recovered('readings', 'Alplakes answers again');
@@ -681,7 +728,15 @@ export class Monitor {
 }
 
 function emptyData() {
-  return { version: 1, catalogue: null, known: {}, forecasts: {}, sides: {} };
+  return {
+    version: 1,
+    depth: null,
+    catalogue: null,
+    known: {},
+    forecasts: {},
+    tried: {},
+    sides: {},
+  };
 }
 
 function emptyProblems() {

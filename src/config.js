@@ -56,7 +56,10 @@ export function parseLakes(text) {
 // "Léman: 46.2107, 6.1613 Bains des Pâquis": the lake, a colon, the latitude and
 // the longitude (a comma or spaces between them, a dot for the decimals), then
 // an optional name.
-const POINT = /^(.+?)\s*:\s*(-?\d{1,2}(?:\.\d+)?)\s*[,\s]\s*(-?\d{1,3}(?:\.\d+)?)\s*(.*)$/;
+// A name starting with a digit or a comma means decimal commas ("46,2, 6,1"):
+// unreadable rather than read wrong.
+const POINT =
+  /^(.+?)\s*:\s*(-?\d{1,2}(?:\.\d+)?)\s*[,\s]\s*(-?\d{1,3}(?:\.\d+)?)(?:\s+([^\d,\s].*))?\s*$/;
 
 /**
  * The points of the "Precise points" field, separated by semicolons or line
@@ -84,7 +87,7 @@ export function parsePoints(text) {
       lake: match[1].trim(),
       lat: Math.round(lat * 1e4) / 1e4,
       lng: Math.round(lng * 1e4) / 1e4,
-      label: match[4].trim() || null,
+      label: match[4]?.trim() || null,
     };
     const key = `${normalizeName(point.lake)}|${point.lat}|${point.lng}`;
     if (!seen.has(key)) {

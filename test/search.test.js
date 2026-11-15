@@ -22,7 +22,7 @@ test('empty, it lists the lakes with a 3D model; nothing found; Alplakes down', 
   const world = await createWorld();
   t.after(() => world.app.stop());
   const all = await search(world, {});
-  assert.match(all.en, /15 of 21 lake\(s\)/);
+  assert.match(all.en, /^21 lake\(s\)\./);
   assert.match(all.en, /Lake Annecy — annecy \(3D model/);
   assert.equal((await search(world, { query: 'Atlantis' })).en, 'No lake found.');
 

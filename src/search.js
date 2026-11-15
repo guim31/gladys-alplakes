@@ -10,7 +10,7 @@ import { SEARCH, render } from './messages.js';
 
 const logger = createLogger({ name: 'alplakes-search' });
 
-export const MAX_RESULTS = 15;
+export const MAX_RESULTS = 25;
 
 /**
  * Handler of the `search_lakes` action.

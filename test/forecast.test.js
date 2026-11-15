@@ -15,6 +15,9 @@ test('the value now is linear between the two surrounding steps', () => {
   assert.equal(valueAt(series, T0 - 7 * HOUR), null);
   assert.equal(valueAt(series, T0 + 52 * HOUR), null);
   assert.equal(valueAt([], T0), null);
+  // A gap of missing values (9 hours) is not bridged.
+  const gap = series.filter((_, i) => i !== 2 && i !== 3);
+  assert.equal(valueAt(gap, T0 + HOUR), null);
 });
 
 test('maximum of the next 24 and 48 hours, change in 24 hours', () => {

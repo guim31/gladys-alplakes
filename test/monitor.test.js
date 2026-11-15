@@ -121,10 +121,59 @@ test('an outage keeps the last forecast, says so once, and recovers', async (t) 
   assert.match(world.fake.connectionStatus.message.fr, /Alplakes ne répond pas/);
   // The values still come from the series kept.
   assert.equal(typeof stateOf(world, featureId(device, 'temperature')), 'number');
+  // A failed try waits 3 hours too, like a success.
   world.api.down = false;
+  const before = world.api.seriesRequests().length;
   await tick(world, 1);
+  assert.equal(world.api.seriesRequests().length, before);
+  await tick(world, 2);
   assert.equal(world.fake.connectionStatus.connected, true);
   assert.equal(world.fake.connectionStatus.message, undefined);
+});
+
+test('a 429 stops the refresh: the other lakes wait for the next one', async (t) => {
+  const world = await createWorld({ config: { lakes: 'Annecy, Léman, Thun' } });
+  t.after(() => world.app.stop());
+  world.api.down = 429;
+  const before = world.api.seriesRequests().length;
+  await tick(world, 3);
+  assert.equal(world.api.seriesRequests().length, before + 1);
+  world.api.down = false;
+  await tick(world, 1);
+  assert.equal(world.api.seriesRequests().length, before + 1);
+  await tick(world, 2);
+  assert.equal(world.api.seriesRequests().length, before + 4);
+});
+
+test('a depth changed while stopped drops the saved series', async (t) => {
+  const first = await createWorld({ config: { lakes: 'Annecy' } });
+  await first.app.stop();
+  const world = await createWorld({
+    config: { lakes: 'Annecy', depth: '5' },
+    dataDir: first.dataDir,
+  });
+  t.after(() => world.app.stop());
+  assert.match(world.api.seriesRequests().at(-1).pathname, /\/5$/);
+});
+
+test('a discovery Gladys refused is published again at the next tick', async (t) => {
+  const world = await createWorld({ config: { lakes: 'Annecy' }, connect: false });
+  t.after(() => world.app.stop());
+  const original = world.gladys.publishDiscoveredDevices.bind(world.gladys);
+  let refuse = true;
+  world.gladys.publishDiscoveredDevices = async (devices) => {
+    if (refuse) {
+      throw new Error('HTTP 503');
+    }
+    return original(devices);
+  };
+  await world.gladys.connect();
+  await world.app.ready;
+  await world.monitor.running;
+  assert.deepEqual(world.fake.discoveredDevices, []);
+  refuse = false;
+  await tick(world, 1);
+  assert.equal(world.fake.discoveredDevices.length, 1);
 });
 
 test('the connection status names what cannot be followed', async (t) => {

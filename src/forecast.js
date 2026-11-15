@@ -9,10 +9,12 @@ export const HOUR = 60 * 60 * 1000;
 
 // A horizon counts as covered when the series reaches it within one step.
 const STEP_SLACK = 3 * HOUR;
+// Two steps farther apart than this (missing values) are not interpolated.
+const MAX_GAP = 6 * HOUR;
 
 const round1 = (value) => Math.round(value * 10) / 10;
 
-/** The value of the series at `time`, linear between two steps; null outside it. */
+/** The value of the series at `time`, linear between two steps; null outside it or in a gap. */
 export function valueAt(series, time) {
   if (series.length === 0 || time < series[0].t || time > series[series.length - 1].t) {
     return null;
@@ -24,6 +26,9 @@ export function valueAt(series, time) {
     }
     if (point.t > time) {
       const before = series[i - 1];
+      if (point.t - before.t > MAX_GAP) {
+        return null;
+      }
       return before.v + ((point.v - before.v) * (time - before.t)) / (point.t - before.t);
     }
   }

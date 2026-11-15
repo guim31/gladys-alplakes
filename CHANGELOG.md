@@ -10,6 +10,8 @@ the notes of the version's GitHub Release.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-15
+
 ### Added
 
 - Water temperature of more than a hundred Alpine lakes (Lake Geneva, Annecy,
@@ -22,3 +24,6 @@ the notes of the version's GitHub Release.
   forecast, with a hysteresis.
 - Dashboard widget `lakes`, and a "Find lakes" button in the configuration.
 - Documentation in English, French, German and Spanish.
+
+[Unreleased]: https://github.com/guim31/gladys-alplakes/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/guim31/gladys-alplakes/releases/tag/v1.0.0

@@ -30,6 +30,14 @@ Gladys before reporting a problem.
 
 In scope: the code of this repository and the Docker image it publishes.
 
+The integration holds no secret: the Alplakes API is public and keyless. It
+stores under `/data` (`alplakes.json`) the list of lakes, the last model
+series of the followed lakes and points, and the side of each trigger
+threshold. It only talks to Gladys and, over HTTPS, to
+`alplakes-api.eawag.ch` and to the static lake list of the Alplakes website
+(`alplakes-eawag.s3.eu-central-1.amazonaws.com`): they receive the lake keys,
+the depth and the coordinates of the configured points, nothing else.
+
 Out of scope: Gladys Assistant itself (see its
 [security policy](https://github.com/GladysAssistant/Gladys/security/policy)),
-and the third-party services and devices the integration talks to.
+and the third-party services the integration talks to.

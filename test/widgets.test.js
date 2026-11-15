@@ -1,77 +1,100 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { validateWidgetContent } from '@gladysassistant/integration-sdk';
-import { createFakeGladys } from '@gladysassistant/integration-sdk/testing';
-import { buildDiscoveredDevices } from '../src/devices/index.js';
-import { simulateLanSession } from '../src/devices/plug.js';
-import { DEMO_STATUS_WIDGET, WIDGETS, refreshWidgets } from '../src/widgets.js';
-import { normalizeConfig } from '../src/config.js';
+import { buildDevice } from '../src/devices.js';
+import { MAX_STATUS_ITEMS, lakeValue } from '../src/widgets.js';
+import { PAQUIS, create, createWorld } from './helpers/world.js';
 
-const gladys = createFakeGladys();
-const config = normalizeConfig();
-const demoStatus = WIDGETS[DEMO_STATUS_WIDGET];
+const LANGS = ['en', 'fr', 'de', 'es'];
 
-// What the SDK passes to onWidgetGet, plus the config index.js adds.
-const getContent = (cfg = config) =>
-  demoStatus.get(gladys, { settings: {}, language: 'en', units: 'metric', config: cfg });
+async function get(w, options) {
+  const ack = await w.fake.widgetGet('lakes', options);
+  assert.equal(ack.success, true);
+  return ack.data.content;
+}
 
-test('the demo_status content is rendered exactly as sent', async () => {
-  // [] = nothing the core would drop, truncate or trim to the content budget.
-  assert.deepEqual(validateWidgetContent(await getContent()), []);
-});
+async function world(t) {
+  const w = await createWorld({ config: { lakes: 'Annecy, Léman, Thun', points: PAQUIS } });
+  t.after(() => w.app.stop());
+  return w;
+}
 
-test('the degraded plug connection content is valid too', async () => {
-  simulateLanSession(false);
-  try {
-    const content = await getContent();
-    assert.deepEqual(validateWidgetContent(content), []);
-    const status = content.components.find((component) => component.type === 'status');
-    assert.ok(
-      status.items.some((item) => item.color === 'warning'),
-      'degraded shows a warning',
-    );
-  } finally {
-    simulateLanSession(true);
-  }
-});
-
-test('the live tiles reference features the integration publishes', async () => {
-  const featureIds = new Set(
-    buildDiscoveredDevices(gladys, config).flatMap((device) =>
-      device.features.map((feature) => feature.external_id),
+/** Every component is valid, within the budget, and its feature links exist. */
+function check(content, monitor) {
+  assert.deepEqual(validateWidgetContent(content), []);
+  assert.ok(content.components.length <= 8);
+  assert.ok(content.components.filter((c) => c.type === 'text').length <= 2);
+  const features = new Set(
+    [...monitor.targets.values()].flatMap((target) =>
+      buildDevice(monitor.gladys, target).features.map((f) => f.external_id),
     ),
   );
-  const liveTiles = (await getContent()).components.filter((c) => c.device_feature);
-  assert.ok(liveTiles.length > 0, 'the template demonstrates a device-bound tile');
-  for (const tile of liveTiles) {
-    assert.ok(featureIds.has(tile.device_feature), `unknown feature ${tile.device_feature}`);
+  for (const component of content.components.filter((c) => c.device_feature)) {
+    assert.ok(features.has(component.device_feature), component.device_feature);
+  }
+  for (const item of content.components.find((c) => c.type === 'status')?.items ?? []) {
+    assert.ok(String(item.value).length <= 40, item.value);
+  }
+}
+
+test('without devices, the widget says what to do', async (t) => {
+  const w = await world(t);
+  const content = await get(w, { language: 'fr' });
+  assert.match(content.components[0].text, /Aucun lac/);
+});
+
+test('the overview lists the created lakes with their Gladys name, in every language', async (t) => {
+  const w = await world(t);
+  await create(w, 'annecy');
+  const point = await create(w, 'geneva_46.2107_6.1613');
+  await w.fake.deviceUpdated({ ...point, name: 'Pâquis' });
+  for (const language of LANGS) {
+    const content = await get(w, { language });
+    check(content, w.monitor);
+    const [status, caption, button] = content.components;
+    assert.deepEqual(
+      status.items.map((item) => item.label),
+      ["Lac d'Annecy", 'Pâquis'],
+    );
+    assert.match(status.items[0].value, /^12[.,]6 °C · m.x\. 12[.,]7 °C$/);
+    assert.match(caption.text, /Alplakes, Eawag \(CC BY 4\.0\) · 15\/11 02:00/);
+    assert.equal(button.link.url, 'https://www.alplakes.eawag.ch');
   }
 });
 
-test('every button action of the content is handled and answers a short toast', async () => {
-  const buttons = (await getContent()).components.filter((c) => c.type === 'button' && c.action);
-  assert.ok(buttons.length > 0, 'the template demonstrates a widget action');
-  for (const { action } of buttons) {
-    const message = await demoStatus.action(gladys, {
-      actionKey: action.key,
-      params: action.params ?? {},
-      settings: {},
-      config,
-    });
-    assert.ok(message.en, 'the toast carries at least the mandatory `en` text');
-    assert.ok(message.en.length <= 200, 'toasts are capped at 200 characters');
-  }
-});
-
-test('an unknown widget action fails, so the user sees the error', async () => {
-  await assert.rejects(
-    demoStatus.action(gladys, { actionKey: 'unknown', params: {}, settings: {}, config }),
-    /Unknown widget action/,
+test('one lake: its four tiles; the settings hide the forecast and the link', async (t) => {
+  const w = await world(t);
+  const device = await create(w, 'annecy');
+  const full = await get(w, { settings: { lake: device.external_id } });
+  check(full, w.monitor);
+  assert.deepEqual(
+    full.components.map((c) => c.type),
+    ['value', 'value', 'value', 'value', 'text', 'button'],
   );
+  const bare = await get(w, {
+    settings: { lake: device.external_id, show_forecast: false, show_link: false },
+  });
+  assert.deepEqual(
+    bare.components.map((c) => c.type),
+    ['value', 'text'],
+  );
+  const overview = await get(w, { settings: { show_forecast: false } });
+  assert.match(overview.components[0].items[0].value, /^12\.6 °C$/);
 });
 
-test('refreshWidgets nudges every widget', () => {
-  const fresh = createFakeGladys();
-  refreshWidgets(fresh);
-  assert.deepEqual(fresh.fake.widgetRefreshes, Object.keys(WIDGETS));
+test('a lake no longer followed', async (t) => {
+  const w = await world(t);
+  const device = await create(w, 'thun');
+  await w.fake.deviceDeleted(device);
+  const content = await get(w, {
+    settings: { lake: device.external_id },
+    language: 'de',
+  });
+  assert.equal(content.components[0].text, 'Dieser See wird nicht mehr verfolgt.');
+});
+
+test('status values stay within 40 characters and wait for a series', () => {
+  assert.equal(lakeValue({ current: null }, 'es'), 'En espera');
+  assert.equal(lakeValue({ current: 21.04, max48: 23.5 }, 'fr'), '21,0 °C · max. 23,5 °C');
+  assert.ok(MAX_STATUS_ITEMS <= 10);
 });

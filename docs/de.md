@@ -1,0 +1,152 @@
+# Alplakes
+
+Bringt die **Wassertemperatur der Alpenseen** in Gladys: Genfersee, Lac d'Annecy, Lac du
+Bourget, Bodensee, Zürichsee, Vierwaldstättersee, Lago Maggiore, Gardasee, Comer See und mehr
+als hundert Seen in der Schweiz, in Frankreich, Italien, Deutschland, Österreich und Slowenien,
+mit einer **Prognose für die nächsten zwei Tage**. Die Werte stammen von **Alplakes**, der
+Seenplattform der **Eawag**, des Wasserforschungsinstituts des ETH-Bereichs. Kein Konto, kein
+Schlüssel.
+
+> **Simulationen, an Messungen kalibriert: keine direkten Messungen.** Alplakes rechnet für
+> jeden See hydrodynamische Modelle, angetrieben von der Wetterprognose und an Messungen
+> überprüft: Der Wert kann ein Grad oder mehr von dem abweichen, was ein Thermometer an deinem
+> Strand anzeigt. Diese Integration ist nicht mit der Eawag verbunden.
+
+## Was du bekommst
+
+- **Ein Gerät pro verfolgtem See**, aus dem 1D-Modell des ganzen Sees (Simstrat): die
+  **aktuelle Wassertemperatur**, das **Maximum der nächsten 24 Stunden** und der **nächsten
+  48 Stunden** sowie die **erwartete Änderung in 24 Stunden** (zum Beispiel +0,6 °C).
+- **Ein Gerät pro genauem Punkt** (ein Strand, ein Hafen, ein Steg) auf den Seen mit 3D-Modell
+  (Genfersee, Annecy, Bourget, Zürichsee, Vierwaldstättersee, Luganersee, Gardasee, Bielersee,
+  Neuenburgersee, Zugersee, Murtensee…): dieselben vier Werte, an der Modellzelle, die dem
+  Punkt am nächsten liegt.
+- Die Temperatur an der **Oberfläche** (zum Baden) oder in **1, 2, 5 oder 10 m** Tiefe.
+- Ein **Szenen-Auslöser**: Das Wasser erreicht eine Temperatur (10 bis 28 °C), jetzt oder in
+  der Prognose der nächsten 48 Stunden, oder fällt wieder darunter.
+- Ein **Dashboard-Widget**: deine Seen, ihre Temperatur, das Maximum der nächsten 48 Stunden
+  und die Tendenz.
+- Eine Schaltfläche **„Seen suchen“**, die die Seen nach Namen auflistet, mit ihrem Schlüssel.
+
+## Voraussetzungen
+
+- Gladys Assistant **5.3.0** oder neuer.
+- Internetzugang für Gladys (die Integration fragt die öffentliche API von Alplakes ab).
+
+## Konfiguration
+
+Installiere die Integration über **Integrationen → Von GitHub installieren** mit der Adresse
+`https://github.com/guim31/gladys-alplakes` und öffne dann ihren Tab **Konfiguration**.
+
+### Einstellungen
+
+- **Seen**: Namen oder Schlüssel, durch Kommas getrennt, höchstens 10. Ein Name funktioniert
+  auf Deutsch, Englisch, Französisch oder Italienisch, mit oder ohne Artikel: `Genfersee`,
+  `Léman`, `Lake Geneva`, `Annecy`, `Lac du Bourget`, `Thunersee`. Manche Seen sind in Becken
+  aufgeteilt (Zürich, Bodensee, Lugano, Vierwaldstättersee): Gib den Schlüssel des Beckens an
+  (`upperzurich`, `lowerconstance`…).
+- **Genaue Punkte (optional)**: `See: Breite, Länge Name`, durch Semikolons getrennt, höchstens
+  10, zum Beispiel `Léman: 46.2107, 6.1613 Bains des Pâquis`. Der Name ist optional. Die
+  Koordinaten sind Dezimalgrad mit Punkt (kopiere sie aus einer Karte); vier Nachkommastellen
+  werden behalten.
+- **Tiefe**: Oberfläche (Standard), 1, 2, 5 oder 10 m, für alle Seen und Punkte.
+- **Sprache der Namen**: die Sprache der Geräte- und Funktionsnamen, beim Anlegen der Geräte in
+  Gladys festgelegt.
+
+Speichere und lege dann die Geräte im Tab **Entdecken** an. Der Verbindungsstatus im Tab
+Konfiguration sagt dir, was nicht verfolgt werden kann: ein unbekannter See, ein Name, der zu
+mehreren Seen passt, ein unlesbarer Punkt, ein See ohne 3D-Modell, ein Punkt zu weit vom See
+(mehr als 1,5 km von der nächsten Modellzelle).
+
+### Deine Seen finden
+
+Die Schaltfläche **Seen suchen** listet die Seen auf, die zu einem Namen passen, mit ihrem
+Schlüssel, und zeigt, welche ein 3D-Modell haben (genaue Punkte möglich). Leer gelassen listet
+sie die Seen mit 3D-Modell auf. Kopiere einen Namen oder Schlüssel in **Seen** und speichere.
+
+## Geräte
+
+Jeder See oder Punkt ist ein Gerät mit vier schreibgeschützten Funktionen, in °C:
+
+| Funktion          | Inhalt                                                                |
+| ----------------- | --------------------------------------------------------------------- |
+| Wassertemperatur  | Die aktuelle Temperatur, zwischen den zwei umgebenden Modellschritten |
+| Max. nächste 24 h | Der wärmste Wert der nächsten 24 Stunden (mindestens der aktuelle)    |
+| Max. nächste 48 h | Der wärmste Wert der nächsten 48 Stunden                              |
+| Änderung in 24 h  | Die Temperatur in 24 Stunden minus die aktuelle (mit Vorzeichen)      |
+
+Temperatur und Änderung werden als „Fühler“-Temperaturen veröffentlicht: Ein See, der in Gladys
+einem Raum zugeordnet ist, verändert die Temperatur dieses Raums nicht. Die Werte werden jede
+Stunde aus der Modellreihe berechnet, und Alplakes wird alle 3 Stunden neu abgefragt.
+
+## Dashboard-Widget
+
+Füge das Widget **Alplakes → Seen** zu einem Dashboard hinzu.
+
+- **Ohne gewählten See**: eine Zeile pro See oder Punkt (höchstens 10) mit der aktuellen
+  Temperatur, dem Maximum der nächsten 48 Stunden und dem Tendenzsymbol (wird wärmer,
+  gleichbleibend, kühlt ab).
+- **Mit gewähltem See**: seine vier Werte, live.
+
+Einstellungen blenden die Prognose und den Link zur Alplakes-Website aus. Das Widget endet mit
+dem Hinweis „Daten: Alplakes, Eawag (CC BY 4.0)“ und der Uhrzeit der letzten Daten.
+
+## Szenen-Auslöser
+
+**Schwelle der Wassertemperatur überschritten** löst aus, wenn das Wasser eines verfolgten Sees
+oder Punkts eine Temperatur erreicht oder 0,3 °C darunter fällt (ein Wert, der um eine Schwelle
+pendelt, löst nur einmal aus). Filter: der See oder Punkt, der Wert (die aktuelle Temperatur
+oder das Maximum der nächsten 48 Stunden), die Temperaturen (10 bis 28 °C) und die Richtung
+(erreicht, fällt darunter). Die Szene kann den Namen des Sees, die Wassertemperatur, die
+Schwelle, das Kürzel des Werts (`current`, `forecast_48h`) und das Kürzel der Richtung
+(`rising`, `falling`) verwenden.
+
+Für jede andere Bedingung (über 21,5 °C, zwischen zwei Werten…) nutze den üblichen
+Geräte-Auslöser von Gladys auf den Funktionen des Geräts.
+
+## Beispielszenen
+
+- **Badesaison**: Wenn der Lac d'Annecy 20 °C erreicht (aktuelle Temperatur, erreicht), sende
+  „Der See hat {Temperatur} °C, ab ins Wasser!“.
+- **Das Wochenende planen**: Wenn das Maximum der nächsten 48 Stunden an deinem Strand 22 °C
+  erreicht, sende am Donnerstagabend eine Nachricht.
+- **Saisonende**: Wenn der See wieder unter 16 °C fällt, erinnere dich daran, das Paddleboard
+  hereinzuholen.
+
+## Datenquellen, Lizenz und Kontingente
+
+- **Alplakes** (Eawag, https://www.alplakes.eawag.ch): API `https://alplakes-api.eawag.ch`,
+  Modelle Simstrat (1D, eines pro See oder Becken), Delft3D-FLOW und MITgcm (3D), angetrieben
+  von der Prognose von MeteoSchweiz. Seenamen: die statische Liste der Alplakes-Website.
+- **Lizenz**: CC BY 4.0. Hinweis: „Daten: Alplakes, Eawag (CC BY 4.0)“, im Widget und im Tab
+  Konfiguration angezeigt. Verlangte Quellenangabe: Alplakes, Eawag (CC BY 4.0).
+- **Faire Nutzung**: Die API ist pro Client begrenzt. Die Integration fragt alle 3 Stunden (im
+  Takt der Modelle) eine Reihe pro See oder Punkt ab, im Abstand von einer Sekunde, mit einem
+  erkennbaren User-Agent, und die Seenliste einmal am Tag. Eine fehlgeschlagene Anfrage behält
+  die letzte Reihe: Die Prognose bleibt etwa zwei Tage nutzbar.
+- An Alplakes gehen nur die Schlüssel der Seen, die Tiefe und die Koordinaten deiner Punkte.
+
+## Fehlerbehebung
+
+- **„Unbekannter See“**: Nutze **Seen suchen**; die kleinen Seen haben einen eigenen Schlüssel
+  (`rotsee`, `oeschinensee`).
+- **„Mehrere Seen passen“**: Der See ist in Becken aufgeteilt: Gib den Schlüssel des Beckens an.
+- **„Kein 3D-Modell“**: Genaue Punkte sind nur auf Seen mit 3D-Modell möglich; verfolge
+  stattdessen den ganzen See.
+- **„Punkt zu weit vom See entfernt“**: Die Koordinaten sind wohl vertauscht (Breite zuerst)
+  oder liegen an Land.
+- **„Alplakes antwortet nicht“**: Die Werte laufen nach der letzten Prognose weiter; sie kommen
+  mit dem Dienst zurück.
+- Protokolle: `LOG_LEVEL=debug` zeigt jeden Durchlauf.
+
+## Grenzen
+
+- **Simulationen, keine Messungen**: Die Modelle sind im Mittel gut, weniger in der Nähe einer
+  Flussmündung, in einer flachen Bucht oder nach einem Gewitter.
+- Das 1D-Modell liefert einen Wert für den ganzen See; für einen Strand nutze einen genauen
+  Punkt.
+- Eine Änderung der Tiefe fragt alle Reihen neu ab; eine Überschreitung während eines Neustarts
+  löst nichts aus.
+- Spanische Seenamen gibt es nur für die großen Seen; die anderen behalten ihren englischen
+  Namen.
+- Nicht mit der Eawag verbunden. Daten: Alplakes, Eawag (CC BY 4.0).

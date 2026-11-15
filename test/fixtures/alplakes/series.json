@@ -1,0 +1,240 @@
+{
+  "recorded_at": "2026-11-15T01:00:00.000Z",
+  "from": "202611141900",
+  "to": "202611170700",
+  "answers": {
+    "/simulations/1d/point/simstrat/annecy/202611141900/202611170700/0": {
+      "status": 200,
+      "body": {
+        "time": [
+          "2026-11-14T19:00:02.880000+00:00",
+          "2026-11-14T22:00:02.880000+00:00",
+          "2026-11-15T01:00:02.880000+00:00",
+          "2026-11-15T04:00:02.880000+00:00",
+          "2026-11-15T07:00:02.880000+00:00",
+          "2026-11-15T10:00:02.880000+00:00",
+          "2026-11-15T13:00:02.880000+00:00",
+          "2026-11-15T16:00:02.880000+00:00",
+          "2026-11-15T19:00:02.880000+00:00",
+          "2026-11-15T22:00:02.880000+00:00",
+          "2026-11-16T01:00:02.880000+00:00",
+          "2026-11-16T04:00:02.880000+00:00",
+          "2026-11-16T07:00:02.880000+00:00",
+          "2026-11-16T10:00:02.880000+00:00",
+          "2026-11-16T13:00:02.880000+00:00",
+          "2026-11-16T16:00:02.880000+00:00",
+          "2026-11-16T19:00:02.880000+00:00",
+          "2026-11-16T22:00:02.880000+00:00",
+          "2026-11-17T01:00:02.880000+00:00",
+          "2026-11-17T04:00:02.880000+00:00"
+        ],
+        "depth": {
+          "data": 0,
+          "unit": "m",
+          "description": "Distance from the surface to the closest grid point to requested depth"
+        },
+        "resample": null,
+        "variables": {
+          "T": {
+            "data": [
+              12.639, 12.609, 12.588, 12.576, 12.572, 12.578, 12.68, 12.648, 12.623, 12.604, 12.585,
+              12.58, 12.568, 12.585, 12.681, 12.686, 12.624, 12.562, 12.564, 12.554
+            ],
+            "unit": "degC",
+            "description": "Temperature"
+          }
+        }
+      }
+    },
+    "/simulations/1d/point/simstrat/geneva/202611141900/202611170700/0": {
+      "status": 200,
+      "body": {
+        "time": [
+          "2026-11-14T19:00:02.880000+00:00",
+          "2026-11-14T22:00:02.880000+00:00",
+          "2026-11-15T01:00:02.880000+00:00",
+          "2026-11-15T04:00:02.880000+00:00",
+          "2026-11-15T07:00:02.880000+00:00",
+          "2026-11-15T10:00:02.880000+00:00",
+          "2026-11-15T13:00:02.880000+00:00",
+          "2026-11-15T16:00:02.880000+00:00",
+          "2026-11-15T19:00:02.880000+00:00",
+          "2026-11-15T22:00:02.880000+00:00",
+          "2026-11-16T01:00:02.880000+00:00",
+          "2026-11-16T04:00:02.880000+00:00",
+          "2026-11-16T07:00:02.880000+00:00",
+          "2026-11-16T10:00:02.880000+00:00",
+          "2026-11-16T13:00:02.880000+00:00",
+          "2026-11-16T16:00:02.880000+00:00",
+          "2026-11-16T19:00:02.880000+00:00",
+          "2026-11-16T22:00:02.880000+00:00",
+          "2026-11-17T01:00:02.880000+00:00",
+          "2026-11-17T04:00:02.880000+00:00"
+        ],
+        "depth": {
+          "data": 0,
+          "unit": "m",
+          "description": "Distance from the surface to the closest grid point to requested depth"
+        },
+        "resample": null,
+        "variables": {
+          "T": {
+            "data": [
+              11.957, 11.932, 11.916, 11.905, 11.879, 11.885, 11.912, 11.931, 11.905, 11.889,
+              11.874, 11.857, 11.832, 11.825, 11.846, 11.822, 11.787, 11.764, 11.742, 11.72
+            ],
+            "unit": "degC",
+            "description": "Temperature"
+          }
+        }
+      }
+    },
+    "/simulations/1d/point/simstrat/thun/202611141900/202611170700/0": {
+      "status": 200,
+      "body": {
+        "time": [
+          "2026-11-14T19:00:02.880000+00:00",
+          "2026-11-14T22:00:02.880000+00:00",
+          "2026-11-15T01:00:02.880000+00:00",
+          "2026-11-15T04:00:02.880000+00:00",
+          "2026-11-15T07:00:02.880000+00:00",
+          "2026-11-15T10:00:02.880000+00:00",
+          "2026-11-15T13:00:02.880000+00:00",
+          "2026-11-15T16:00:02.880000+00:00",
+          "2026-11-15T19:00:02.880000+00:00",
+          "2026-11-15T22:00:02.880000+00:00",
+          "2026-11-16T01:00:02.880000+00:00",
+          "2026-11-16T04:00:02.880000+00:00",
+          "2026-11-16T07:00:02.880000+00:00",
+          "2026-11-16T10:00:02.880000+00:00",
+          "2026-11-16T13:00:02.880000+00:00",
+          "2026-11-16T16:00:02.880000+00:00",
+          "2026-11-16T19:00:02.880000+00:00",
+          "2026-11-16T22:00:02.880000+00:00",
+          "2026-11-17T01:00:02.880000+00:00",
+          "2026-11-17T04:00:02.880000+00:00"
+        ],
+        "depth": {
+          "data": 0,
+          "unit": "m",
+          "description": "Distance from the surface to the closest grid point to requested depth"
+        },
+        "resample": null,
+        "variables": {
+          "T": {
+            "data": [
+              12.2, 12.19, 12.181, 12.166, 12.157, 12.178, 12.251, 12.31, 12.273, 12.251, 12.235,
+              12.212, 12.192, 12.173, 12.18, 12.152, 12.126, 12.114, 12.103, 12.099
+            ],
+            "unit": "degC",
+            "description": "Temperature"
+          }
+        }
+      }
+    },
+    "/simulations/point/delft3d-flow/geneva/202611141900/202611170700/0/46.2107/6.1613?variables=temperature": {
+      "status": 200,
+      "body": {
+        "time": [
+          "2026-11-14T21:00:00+00:00",
+          "2026-11-15T00:00:00+00:00",
+          "2026-11-15T03:00:00+00:00",
+          "2026-11-15T06:00:00+00:00",
+          "2026-11-15T09:00:00+00:00",
+          "2026-11-15T12:00:00+00:00",
+          "2026-11-15T15:00:00+00:00",
+          "2026-11-15T18:00:00+00:00",
+          "2026-11-15T21:00:00+00:00",
+          "2026-11-16T00:00:00+00:00",
+          "2026-11-16T03:00:00+00:00",
+          "2026-11-16T06:00:00+00:00",
+          "2026-11-16T09:00:00+00:00",
+          "2026-11-16T12:00:00+00:00",
+          "2026-11-16T15:00:00+00:00",
+          "2026-11-16T18:00:00+00:00",
+          "2026-11-16T21:00:00+00:00",
+          "2026-11-17T00:00:00+00:00",
+          "2026-11-17T03:00:00+00:00",
+          "2026-11-17T06:00:00+00:00"
+        ],
+        "lat": 46.21074069904894,
+        "lng": 6.161313723055956,
+        "depth": {
+          "data": 0.17320843040943146,
+          "unit": "m",
+          "description": "Distance from the surface to the closest grid point to requested depth"
+        },
+        "distance": {
+          "data": 4.647090554010623,
+          "unit": "m",
+          "description": "Distance from requested location to center of closest grid point"
+        },
+        "variables": {
+          "temperature": {
+            "data": [
+              11.485, 11.474, 11.451, 11.424, 11.434, 11.552, 11.675, 11.642, 11.605, 11.57, 11.536,
+              11.514, 11.521, 11.634, 11.706, 11.647, 11.607, 11.577, 11.554, 11.53
+            ],
+            "unit": "degC",
+            "description": "Water temperature"
+          }
+        }
+      }
+    },
+    "/simulations/point/delft3d-flow/geneva/202611141900/202611170700/0/46.5/6.2?variables=temperature": {
+      "status": 200,
+      "body": {
+        "time": [
+          "2026-11-14T21:00:00+00:00",
+          "2026-11-15T00:00:00+00:00",
+          "2026-11-15T03:00:00+00:00",
+          "2026-11-15T06:00:00+00:00",
+          "2026-11-15T09:00:00+00:00",
+          "2026-11-15T12:00:00+00:00",
+          "2026-11-15T15:00:00+00:00",
+          "2026-11-15T18:00:00+00:00",
+          "2026-11-15T21:00:00+00:00",
+          "2026-11-16T00:00:00+00:00",
+          "2026-11-16T03:00:00+00:00",
+          "2026-11-16T06:00:00+00:00",
+          "2026-11-16T09:00:00+00:00",
+          "2026-11-16T12:00:00+00:00",
+          "2026-11-16T15:00:00+00:00",
+          "2026-11-16T18:00:00+00:00",
+          "2026-11-16T21:00:00+00:00",
+          "2026-11-17T00:00:00+00:00",
+          "2026-11-17T03:00:00+00:00",
+          "2026-11-17T06:00:00+00:00"
+        ],
+        "lat": 46.443813654612676,
+        "lng": 6.317913589927821,
+        "depth": {
+          "data": 0.17320843040943146,
+          "unit": "m",
+          "description": "Distance from the surface to the closest grid point to requested depth"
+        },
+        "distance": {
+          "data": 10980.569544222473,
+          "unit": "m",
+          "description": "Distance from requested location to center of closest grid point"
+        },
+        "variables": {
+          "temperature": {
+            "data": [
+              11.563, 11.536, 11.511, 11.443, 11.452, 11.504, 11.548, 11.482, 11.447, 11.375,
+              11.134, 10.955, 10.87, 10.85, 10.671, 10.437, 10.277, 10.149, 10.051, 9.954
+            ],
+            "unit": "degC",
+            "description": "Water temperature"
+          }
+        }
+      }
+    },
+    "/simulations/1d/point/simstrat/nolake/202611141900/202611170700/0": {
+      "status": 400,
+      "body": {
+        "detail": "simstrat simulation results are not available for nolake please select from: [baldegg, aegeri, hallwil, biel, greifensee, upperconstance, thun, brienz, joux, klontalersee, geneva, gruyere, lungern, maggiore, upperlugano, pfaffikon, murten, neuchatel, sarnen, sempach, sihlsee, lucernealpnachersee, upperzurich, walensee, lucerneurnersee, poschiavo, sils, silvaplana, zug, champfer, stmoritz, lauerz, rotsee, turlersee, amsoldingersee, moossee, mauensee, soppensee, oeschinensee, cadagno, huttwilersee, inkwilersee, huttnersee, lutzelsee, husemersee, mettmenhaslisee, egelsee, untererchatzensee, seeweidsee, burgaschisee, burgseeli, dittligsee, gerzensee, lobsigensee, chlimoossee, brenet, uebeschisee, bret, tome, superiore, barone, geistsee, sassolo, barchetsee, hasenseeost, bichelsee, hasenseewest, hauptwilerweiher, hugiweiher, marwilermoos, obererbommerweiher, nussbommersee, vagoweiher, wilemersee, wistererweiher, lowerconstance, lowerzurich, lowerlugano, lucernegersauerandtreibbecken, lucernekreuztrichterandvitznauerbecken, lioson, chavonnes, bretaye, lenkerseeli, stockseewli, steinsee, oberesbanzlauiseeli, caldonazzo, bled, garda, mondsee, annecy, bourget, iseo, como, riegsee, tachinger, weissensee, worthsee, tegernsee, simssee, staffelsee, seehamer, walchensee, starnberger, niedersonthofener, schliersee, kochelsee, hopfensee, gruntensee, grosseralpsee, eibsee, konigsee, bannwaldsee, chiemsee, ammersee, traunsee, grabensee, faaker, fuschlsee, wolfgangsee, irrsee, attersee, mattsee, obertrumer, wallersee, ossiacher, millstaetter, worthersee, zeller, arendsee, upperlugano_python_enkf, aiguebelette, aegeri_python_enkf, hallwil_python_enkf, greifensee_python_enkf, geneva_python_enkf, maggiore_python_enkf, murten_python_enkf]"
+      }
+    }
+  }
+}

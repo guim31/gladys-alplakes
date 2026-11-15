@@ -222,12 +222,14 @@ export class Alplakes {
   }
 
   async catalogue(now) {
+    // The metadata weigh about 200 kB and sometimes take 15 s: a longer timeout.
+    const slow = { timeoutMs: 30000 };
     const [meta1d, meta3d] = await Promise.all([
-      getJson(this.fetch, `${API_URL}/simulations/1d/metadata`),
-      getJson(this.fetch, `${API_URL}/simulations/metadata`),
+      getJson(this.fetch, `${API_URL}/simulations/1d/metadata`, slow),
+      getJson(this.fetch, `${API_URL}/simulations/metadata`, slow),
     ]);
     // The names are a comfort: without them, the keys ("geneva") still work.
-    const names = await getJson(this.fetch, NAMES_URL).catch(() => []);
+    const names = await getJson(this.fetch, NAMES_URL, slow).catch(() => []);
     return buildCatalogue(meta1d, meta3d, names, now);
   }
 

@@ -1,0 +1,30 @@
+[
+  {
+    "model": "delft3d-flow",
+    "lakes": [
+      { "name": "greifensee", "start_date": "2022-12-04", "end_date": "2026-11-18" },
+      { "name": "biel", "start_date": "2019-01-13", "end_date": "2026-11-18" },
+      { "name": "zurich", "start_date": "2019-01-13", "end_date": "2026-11-18" },
+      { "name": "geneva", "start_date": "2018-12-30", "end_date": "2026-11-18" },
+      { "name": "joux", "start_date": "2019-03-10", "end_date": "2026-11-18" },
+      { "name": "murten", "start_date": "2019-01-13", "end_date": "2026-11-18" },
+      { "name": "lugano", "start_date": "2019-01-13", "end_date": "2026-11-18" },
+      { "name": "ageri", "start_date": "2018-12-30", "end_date": "2026-11-18" },
+      { "name": "caldonazzo", "start_date": "2023-04-30", "end_date": "2023-12-04" },
+      { "name": "garda", "start_date": "2018-12-30", "end_date": "2026-11-18" },
+      { "name": "hallwil", "start_date": "2019-01-13", "end_date": "2026-11-18" },
+      { "name": "stmoritz", "start_date": "2019-03-03", "end_date": "2026-11-18" },
+      { "name": "annecy", "start_date": "2026-05-24", "end_date": "2026-11-18" },
+      { "name": "bourget", "start_date": "2026-05-24", "end_date": "2026-11-18" }
+    ]
+  },
+  {
+    "model": "mitgcm",
+    "lakes": [
+      { "name": "zurich", "start_date": "2024-12-08", "end_date": "2026-11-18" },
+      { "name": "zug", "start_date": "2025-07-13", "end_date": "2026-11-18" },
+      { "name": "lucerne", "start_date": "2025-11-23", "end_date": "2026-11-18" },
+      { "name": "neuchatel", "start_date": "2026-03-15", "end_date": "2026-11-18" }
+    ]
+  }
+]

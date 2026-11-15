@@ -1,61 +1,143 @@
-# Demo Devices Template
+# Alplakes
 
-This is the user documentation of the integration. Gladys re-hosts this file
-and shows a permanent **Documentation** link to it in the Configuration screen
-(in the user's language, with English as the fallback) — it is when
-configuring that the user needs it most. Keep the short onboarding hints in
-the `section` blocks of the manifest `config_schema`; put the long
-step-by-step (screenshots, troubleshooting…) here.
+Brings the **water temperature of Alpine lakes** into Gladys: Lake Geneva, Lake Annecy, Lake
+Bourget, Lake Constance, Lake Zurich, Lake Lucerne, Lake Maggiore, Lake Garda, Lake Como and
+more than a hundred Swiss, French, Italian, German, Austrian and Slovenian lakes, with a
+**forecast for the next two days**. The values come from **Alplakes**, the lake platform of
+**Eawag**, the Swiss Federal Institute of Aquatic Science and Technology. No account, no key.
+
+> **Simulations calibrated on measurements, not direct measurements.** Alplakes runs
+> hydrodynamic models of each lake, driven by the weather forecast and checked against
+> measurements: the value can be a degree or more away from what a thermometer reads at your
+> beach. This integration is not affiliated with Eawag.
 
 ## What you get
 
-Six demo devices show up after installation: a weather station (real data
-from Open-Meteo), a switch, a dimmable light, a smart plug with power
-metering, a motion sensor and a camera.
+- **One device per lake** you follow, from the 1D model of the whole lake (Simstrat): the
+  **water temperature now**, the **maximum of the next 24 hours** and of the **next 48 hours**,
+  and the **change expected in 24 hours** (for instance +0.6 °C).
+- **One device per precise point** (a beach, a harbour, a jetty) on the lakes that have a 3D
+  model (Lake Geneva, Annecy, Bourget, Zurich, Lucerne, Lugano, Garda, Biel, Neuchâtel, Zug,
+  Murten…): the same four values, at the grid cell of the model nearest to the point.
+- The temperature at the **surface** (for swimming) or at **1, 2, 5 or 10 m** deep.
+- A **scene trigger**: the water reaches a temperature (10 to 28 °C), now or in the forecast of
+  the next 48 hours, or falls back below it.
+- A **dashboard widget**: your lakes, their temperature, the maximum of the next 48 hours and
+  the trend.
+- A **"Find lakes"** button that lists the lakes by name, with their key.
+
+## Requirements
+
+- Gladys Assistant **5.3.0** or later.
+- Internet access from Gladys (the integration asks the public Alplakes API).
 
 ## Configuration
 
-1. Open the **Configuration** tab of the integration.
-2. Set the **latitude** and **longitude** the demo weather station should
-   observe (they default to Paris), and pick your temperature unit.
-   The **refresh interval** sets how often the weather station and the
-   plug's power are read: every 5 minutes by default, every minute at most.
-3. Save: the devices appear in the **Discovery** tab, ready to be added.
+Install the integration from **Integrations → Install from GitHub** with the address
+`https://github.com/guim31/gladys-alplakes`, then open its **Configuration** tab.
 
-The **Prefer the local connection** toggle drives the demo plug: it reports
-the channel it actually uses as a badge (local or cloud), with an orange dot
-when it runs degraded (local refused, cloud fallback).
+### Settings
 
-## Actions
+- **Lakes**: names or keys, separated by commas, 10 at most. A name works in English, French,
+  German or Italian, with or without its article: `Léman`, `Lake Geneva`, `Genfersee`,
+  `Annecy`, `Lac du Bourget`, `Thunersee`. Some lakes are split into basins (Zurich, Constance,
+  Lugano, Lucerne): give the key of the basin (`upperzurich`, `lowerconstance`…).
+- **Precise points (optional)**: `lake: latitude, longitude name`, separated by semicolons, 10 at
+  most, for instance `Léman: 46.2107, 6.1613 Bains des Pâquis`. The name is optional. The
+  coordinates are in decimal degrees with a dot (copy them from a map); four decimals are kept.
+- **Depth**: surface (default), 1, 2, 5 or 10 m. It applies to every lake and point.
+- **Language of the names**: the language of the device and feature names, set when the devices
+  are created in Gladys.
 
-- **Test the weather provider** — performs a live request to Open-Meteo and
-  shows the current temperature and humidity under the button.
-- **Identify a device** — pick one of your devices in the list and it will
-  signal itself (the demo light "blinks" in the logs).
+Save, then create the devices in the **Discover** tab. The connection status of the
+Configuration tab tells you what cannot be followed: an unknown lake, a name matching several
+lakes, a point that cannot be read, a lake without a 3D model, a point too far from the lake
+(more than 1.5 km from the nearest cell of the model).
 
-## Scenes
+### Finding your lakes
 
-The integration adds its own cards to the scene editor (Gladys 5.1 or
-later), under the **Integrations** category:
+The **Find lakes** button lists the lakes matching a name, with their key, and says which ones
+have a 3D model (precise points possible). Left empty, it lists the lakes with a 3D model.
+Copy a name or a key into **Lakes**, then save.
 
-- **Motion detected** (trigger) — starts the scene when a demo motion sensor
-  sees something move. Optionally pick the sensor and what moved (person,
-  animal); left empty, any detection matches. The following actions can
-  read what moved with `{{triggerEvent.data.target}}`.
-- **Identify a device** (action) — makes the chosen device signal itself.
-  It returns whether the device could signal itself, so the following
-  actions can depend on it.
+## Devices
 
-## Dashboard
+Each lake or point is a device with four read-only features, in °C:
 
-Add the **Demo status** widget to a dashboard: it shows the live
-temperature of the weather station and the power of the office plug, the
-connection the plug currently uses (orange when degraded) and the observed
-location. Its **Identify the light** button makes the demo light signal
-itself.
+| Feature           | Content                                                           |
+| ----------------- | ----------------------------------------------------------------- |
+| Water temperature | The temperature now, between the two model steps around the hour. |
+| Max. next 24 h    | The warmest value of the next 24 hours (the current one at least) |
+| Max. next 48 h    | The warmest value of the next 48 hours                            |
+| Change in 24 h    | The temperature in 24 hours minus the current one (signed)        |
+
+The temperature and the change are published as "probe" temperatures: a lake placed in a room
+of Gladys does not change the temperature of that room. Values are computed every hour from the
+series of the model, and Alplakes is asked again every 3 hours.
+
+## Dashboard widget
+
+Add the **Alplakes → Lakes** widget to a dashboard.
+
+- **Without a lake chosen**: one line per lake or point (10 at most) with the temperature now,
+  the maximum of the next 48 hours and the trend icon (warming, steady, cooling).
+- **With a lake chosen**: its four values, live.
+
+Settings hide the forecast and the link to the Alplakes website. The widget ends with the
+attribution "Data: Alplakes, Eawag (CC BY 4.0)" and the time of the last data.
+
+## Scene trigger
+
+**Water temperature threshold crossed** fires when the water of a followed lake or point
+reaches a temperature, or falls back 0.3 °C below it (so that a value hovering around a
+threshold fires only once). Filters: the lake or point, the value (the temperature now, or the
+maximum of the next 48 hours), the temperatures (10 to 28 °C) and the direction (reached,
+falling back below). The scene can use the lake name, the water temperature, the threshold,
+the value code (`current`, `forecast_48h`) and the direction code (`rising`, `falling`).
+
+For any other condition (above 21.5 °C, between two values…), use the usual device trigger of
+Gladys on the features of the device.
+
+## Scene examples
+
+- **Swimming season**: when Lake Annecy reaches 20 °C (temperature now, reached), send
+  "The lake is at {temperature} °C, swimming time!".
+- **Plan the weekend**: when the maximum of the next 48 hours of your beach reaches 22 °C,
+  send a message on Thursday evening.
+- **End of the season**: when the lake falls back below 16 °C, remind you to bring the paddle
+  board in.
+
+## Data sources, licence and quotas
+
+- **Alplakes** (Eawag, https://www.alplakes.eawag.ch): API `https://alplakes-api.eawag.ch`,
+  models Simstrat (1D, one per lake or basin), Delft3D-FLOW and MITgcm (3D), driven by the
+  MeteoSwiss forecast. Lake names: the static list of the Alplakes website.
+- **Licence**: CC BY 4.0. Attribution: "Data: Alplakes, Eawag (CC BY 4.0)", shown in the widget
+  and in the Configuration tab.
+- **Fair use**: the API is rate-limited per client. The integration asks one series per lake
+  or point every 3 hours (the pace of the models), spaced by one second, with an identifying
+  User-Agent, and the lake list once a day. A failed request keeps the last series: the
+  forecast stays usable for about two days.
+- Nothing is sent to Alplakes but the lake keys, the depth and the coordinates of your points.
 
 ## Troubleshooting
 
-The integration logs everything it does: check the integration logs from the
-Gladys UI (or `docker logs` on the host) with `LOG_LEVEL=debug` for the full
-detail.
+- **"Unknown lake"**: use **Find lakes**; the small lakes have their own key (`rotsee`,
+  `oeschinensee`).
+- **"Several lakes match"**: the lake is split into basins: give the key of the basin.
+- **"No 3D model"**: precise points are only possible on the lakes with a 3D model; follow the
+  whole lake instead.
+- **"Point too far from the lake"**: the coordinates are probably swapped (latitude first) or on
+  land.
+- **"Alplakes does not answer"**: the values continue from the last forecast; they come back
+  with the service.
+- Logs: `LOG_LEVEL=debug` shows every tick.
+
+## Limits
+
+- **Simulations, not measurements**: the models are good on average, less so near a river
+  mouth, in a shallow bay or after a storm.
+- The 1D model gives one value for the whole lake; for a beach, use a precise point.
+- A depth change asks every series again; a crossing during a restart fires no trigger.
+- Spanish lake names exist for the big lakes only; the others keep their English name.
+- Not affiliated with Eawag. Data: Alplakes, Eawag (CC BY 4.0).

@@ -1,0 +1,1982 @@
+[
+  {
+    "key": "geneva",
+    "name": { "EN": "Lake Geneva", "DE": "Genfersee", "FR": "Le Léman", "IT": "Lago Lemano" },
+    "countries": ["CH", "FR"]
+  },
+  {
+    "key": "zurich",
+    "name": {
+      "EN": "Lake Zurich",
+      "DE": "Zürichsee",
+      "FR": "Lac de Zurich",
+      "IT": "Lago di Zurigo"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "biel",
+    "name": { "EN": "Lake Biel", "DE": "Bielersee", "FR": "Lac de Bienne", "IT": "Lago di Bienne" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "greifensee",
+    "name": {
+      "EN": "Greifensee",
+      "DE": "Greifensee",
+      "FR": "Lac de Greifen",
+      "IT": "Lago di Greifen"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "garda",
+    "name": { "EN": "Lake Garda", "DE": "Gardasee", "FR": "Lac de Garde", "IT": "Lago di Garda" },
+    "countries": ["IT"]
+  },
+  {
+    "key": "lugano",
+    "name": {
+      "EN": "Lake Lugano",
+      "DE": "Luganersee",
+      "FR": "Lac de Lugano",
+      "IT": "Lago di Lugano"
+    },
+    "countries": ["CH", "IT"]
+  },
+  {
+    "key": "murten",
+    "name": { "EN": "Lake Murten", "DE": "Murtensee", "FR": "Lac de Morat", "IT": "Lago di Morat" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "caldonazzo",
+    "name": {
+      "EN": "Lake Caldonazzo",
+      "DE": "Caldonazzosee",
+      "FR": "Lac de Caldonazzo",
+      "IT": "Lago di Caldonazzo"
+    },
+    "countries": ["IT"]
+  },
+  {
+    "key": "ageri",
+    "name": { "EN": "Lake Aegeri", "DE": "Ägerisee", "FR": "Lac d'Ägeri", "IT": "Lago di Ägeri" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "joux",
+    "name": { "EN": "Lac de Joux", "DE": "Lac de Joux", "FR": "Lac de Joux", "IT": "Lago di Joux" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "hallwil",
+    "name": {
+      "EN": "Lake Hallwil",
+      "DE": "Hallwilersee",
+      "FR": "Lac de Hallwil",
+      "IT": "Lago di Hallwil"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "stmoritz",
+    "name": {
+      "EN": "Lake St Moritz",
+      "DE": "St. Moritzersee",
+      "FR": "Lac de Saint-Moritz",
+      "IT": "Lago di Sankt Moritz"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "baldegg",
+    "name": {
+      "EN": "Lake Baldegg",
+      "DE": "Baldeggersee",
+      "FR": "Lac de Baldegg",
+      "IT": "Lago di Baldegg"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "constance",
+    "name": {
+      "EN": "Lake Constance",
+      "DE": "Bodensee",
+      "FR": "Lac de Constance",
+      "IT": "Lago di Costanza"
+    },
+    "countries": ["CH", "DE", "AT"]
+  },
+  {
+    "key": "brienz",
+    "name": {
+      "EN": "Lake Brienz",
+      "DE": "Brienzersee",
+      "FR": "Lac de Brienz",
+      "IT": "Lago di Brienz"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "thun",
+    "name": { "EN": "Lake Thun", "DE": "Thunersee", "FR": "Lac de Thoune", "IT": "Lago di Thun" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "gruyere",
+    "name": {
+      "EN": "Lake of Gruyère",
+      "DE": "Greyerzersee",
+      "FR": "Lac de la Gruyère",
+      "IT": "Lago di Gruyère"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "klontalersee",
+    "name": {
+      "EN": "Klöntalersee",
+      "DE": "Klöntalersee",
+      "FR": "Lac du Klöntal",
+      "IT": "Lago di Klöntal"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "maggiore",
+    "name": { "EN": "Lake Maggiore", "DE": "Langensee", "FR": "Lac Majeur", "IT": "Lago Maggiore" },
+    "countries": ["CH", "IT"]
+  },
+  {
+    "key": "lungern",
+    "name": {
+      "EN": "Lake Lungern",
+      "DE": "Lungerersee",
+      "FR": "Lac de Lungern",
+      "IT": "Lago di Lungern"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "neuchatel",
+    "name": {
+      "EN": "Lake Neuchâtel",
+      "DE": "Neuenburgersee",
+      "FR": "Lac de Neuchâtel ",
+      "IT": "Lago di Neuchâtel"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "pfaffikon",
+    "name": {
+      "EN": "Lake Pfäffikon",
+      "DE": "Pfäffikersee",
+      "FR": "Lac de Pfäffikon",
+      "IT": "Lago di Pfäffikon"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sempach",
+    "name": {
+      "EN": "Lake Sempach",
+      "DE": "Sempachersee",
+      "FR": "Lac de Sempach",
+      "IT": "Lago di Sempach"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sarnen",
+    "name": {
+      "EN": "Lake Sarnen",
+      "DE": "Sarnersee",
+      "FR": "Lac de Sarnen",
+      "IT": "Lago di Sarnen"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "alpnachersee",
+    "name": {
+      "EN": "Lake Alpnach",
+      "DE": "Alpnachersee",
+      "FR": "Lac d'Alpnach",
+      "IT": "Lago Alpnach"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lucerne",
+    "name": {
+      "EN": "Lake Lucerne",
+      "DE": "Vierwaldstättersee",
+      "FR": "Lac des Quatre-Cantons",
+      "IT": "Lago dei Quattro Cantoni"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "walensee",
+    "name": {
+      "EN": "Walensee",
+      "DE": "Walensee",
+      "FR": "Lac de Walenstadt",
+      "IT": "Lago di Walenstadt"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "zug",
+    "name": { "EN": "Lake Zug", "DE": "Zugersee", "FR": "Lac de Zoug", "IT": "Lago di Zugo" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sihlsee",
+    "name": { "EN": "Lake Sihl", "DE": "Sihlsee", "FR": "Lac de Sihl", "IT": "Lago di Sihl" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "poschiavo",
+    "name": {
+      "EN": "Lago di Poschiavo",
+      "DE": "Lago di Poschiavo",
+      "FR": "Lago di Poschiavo",
+      "IT": "Lago di Poschiavo"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sils",
+    "name": { "EN": "Lake Sils", "DE": "Silsersee", "FR": "Lac de Sils", "IT": "Lago di Sils" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "silvaplana",
+    "name": {
+      "EN": "Lake Silvaplana",
+      "DE": "Silvaplanersee",
+      "FR": "Lac de Silvaplana",
+      "IT": "Lago di Silvaplana"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "champfer",
+    "name": {
+      "EN": "Lake Champfèr",
+      "DE": "Champfèrersee",
+      "FR": "Lej da Champfer",
+      "IT": "Lej da Champfer"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lauerz",
+    "name": {
+      "EN": "Lake Lauerz",
+      "DE": "Lauerzersee",
+      "FR": "Lac de Lauerz",
+      "IT": "Lago di Lauerz"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "rotsee",
+    "name": { "EN": "Rotsee", "DE": "Rotsee", "FR": "Rotsee", "IT": "Rotsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "turlersee",
+    "name": { "EN": "Türlersee", "DE": "Türlersee", "FR": "Türlersee", "IT": "Türlersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "amsoldingersee",
+    "name": {
+      "EN": "Amsoldingersee",
+      "DE": "Amsoldingersee",
+      "FR": "Amsoldingersee",
+      "IT": "Amsoldingersee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "moossee",
+    "name": { "EN": "Moossee", "DE": "Moossee", "FR": "Moossee", "IT": "Moossee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "mauensee",
+    "name": { "EN": "Mauensee", "DE": "Mauensee", "FR": "Mauensee", "IT": "Mauensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "oeschinensee",
+    "name": {
+      "EN": "Lake Oeschinen",
+      "DE": "Oeschinensee",
+      "FR": "Lac d'Oeschinen",
+      "IT": "Lago di Oeschinen"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "soppensee",
+    "name": { "EN": "Soppensee", "DE": "Soppensee", "FR": "Soppensee", "IT": "Soppensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "inkwilersee",
+    "name": { "EN": "Inkwilersee", "DE": "Inkwilersee", "FR": "Lac d'Inkwil", "IT": "Inkwilersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "huttwilersee",
+    "name": {
+      "EN": "Hüttwilersee",
+      "DE": "Hüttwilersee",
+      "FR": "Hüttwilersee",
+      "IT": "Hüttwilersee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "cadagno",
+    "name": {
+      "EN": "Lake Cadagno",
+      "DE": "Cadagnosee",
+      "FR": "Lac de Cadagno",
+      "IT": "Lago di Cadagno"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "husemersee",
+    "name": { "EN": "Husemersee", "DE": "Husemersee", "FR": "Husemersee", "IT": "Husemersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "huttnersee",
+    "name": { "EN": "Hüttnersee", "DE": "Hüttnersee", "FR": "Hüttnersee", "IT": "Hüttnersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lutzelsee",
+    "name": { "EN": "Lützelsee", "DE": "Lützelsee", "FR": "Lützelsee", "IT": "Lützelsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "mettmenhaslisee",
+    "name": {
+      "EN": "Mettmenhaslisee",
+      "DE": "Mettmenhaslisee",
+      "FR": "Mettmenhaslisee",
+      "IT": "Mettmenhaslisee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "egelsee",
+    "name": { "EN": "Egelsee", "DE": "Egelsee", "FR": "Egelsee", "IT": "Egelsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "untererchatzensee",
+    "name": {
+      "EN": "Unterer Chatzensee",
+      "DE": "Unterer Chatzensee",
+      "FR": "Unterer Chatzensee",
+      "IT": "Unterer Chatzensee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "seeweidsee",
+    "name": { "EN": "Seeweidsee", "DE": "Seeweidsee", "FR": "Seeweidsee", "IT": "Seeweidsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "burgaschisee",
+    "name": {
+      "EN": "Burgäschisee",
+      "DE": "Burgäschisee",
+      "FR": "Burgäschisee",
+      "IT": "Burgäschisee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "burgseeli",
+    "name": { "EN": "Burgseeli", "DE": "Burgseeli", "FR": "Burgseeli", "IT": "Burgseeli" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "dittligsee",
+    "name": { "EN": "Dittligsee", "DE": "Dittligsee", "FR": "Dittligsee", "IT": "Dittligsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "gerzensee",
+    "name": { "EN": "Gerzensee", "DE": "Gerzensee", "FR": "Gerzensee", "IT": "Gerzensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lobsigensee",
+    "name": { "EN": "Lobsigensee", "DE": "Lobsigensee", "FR": "Lobsigensee", "IT": "Lobsigensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "chlimoossee",
+    "name": {
+      "EN": "Chli Moossee",
+      "DE": "Chli Moossee",
+      "FR": "Chli Moossee",
+      "IT": "Chli Moossee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "uebeschisee",
+    "name": { "EN": "Uebeschisee", "DE": "Uebeschisee", "FR": "Uebeschisee", "IT": "Uebeschisee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "bret",
+    "name": { "EN": "Lac de Bret", "DE": "Lac de Bret", "FR": "Lac de Bret", "IT": "Lac de Bret" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "brenet",
+    "name": { "EN": "Lake Brenet", "DE": "Lac Brenet", "FR": "Lac Brenet", "IT": "Lago Brenet" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "chavonnes",
+    "name": {
+      "EN": "Lac des Chavonnes",
+      "DE": "Lac des Chavonnes",
+      "FR": "Lac des Chavonnes",
+      "IT": "Lac des Chavonnes"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "bretaye",
+    "name": {
+      "EN": "Lac de Bretaye",
+      "DE": "Lac de Bretaye",
+      "FR": "Lac de Bretaye",
+      "IT": "Lac de Bretaye"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lioson",
+    "name": { "EN": "Lac Lioson", "DE": "Lac Lioson", "FR": "Lac Lioson", "IT": "Lac Lioson" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "tome",
+    "name": {
+      "EN": "Lago di Tome",
+      "DE": "Lago di Tome",
+      "FR": "Lago di Tome",
+      "IT": "Lago di Tome"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "barone",
+    "name": { "EN": "Lago Barone", "DE": "Lago Barone", "FR": "Lago Barone", "IT": "Lago Barone" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "superiore",
+    "name": {
+      "EN": "Lago Superiore",
+      "DE": "Lago Superiore",
+      "FR": "Lago Superiore",
+      "IT": "Lago Superiore"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sassolo",
+    "name": {
+      "EN": "Lago di Sassolo",
+      "DE": "Lago di Sassolo",
+      "FR": "Lago di Sassolo",
+      "IT": "Lago di Sassolo"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "geistsee",
+    "name": { "EN": "Geistsee", "DE": "Geistsee", "FR": "Geistsee", "IT": "Geistsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lenkerseeli",
+    "name": { "EN": "Lenkerseeli", "DE": "Lenkerseeli", "FR": "Lenkerseeli", "IT": "Lenkerseeli" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "stockseewli",
+    "name": { "EN": "Stockseewli", "DE": "Stockseewli", "FR": "Stockseewli", "IT": "Stockseewli" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "oberesbanzlauiseeli",
+    "name": {
+      "EN": "Oberes Bänzlauiseeli",
+      "DE": "Oberes Bänzlauiseeli",
+      "FR": "Oberes Bänzlauiseeli",
+      "IT": "Oberes Bänzlauiseeli"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "barchetsee",
+    "name": { "EN": "Barchetsee", "DE": "Barchetsee", "FR": "Barchetsee", "IT": "Barchetsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "bichelsee",
+    "name": { "EN": "Bichelsee", "DE": "Bichelsee", "FR": "Bichelsee", "IT": "Bichelsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "hasenseeost",
+    "name": {
+      "EN": "Hasensee Ost",
+      "DE": "Hasensee Ost",
+      "FR": "Hasensee Ost",
+      "IT": "Hasensee Ost"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "hasenseewest",
+    "name": {
+      "EN": "Hasensee West",
+      "DE": "Hasensee West",
+      "FR": "Hasensee West",
+      "IT": "Hasensee West"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "hauptwilerweiher",
+    "name": {
+      "EN": "Hauptwiler Weiher",
+      "DE": "Hauptwiler Weiher",
+      "FR": "Hauptwiler Weiher",
+      "IT": "Hauptwiler Weiher"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "hugiweiher",
+    "name": { "EN": "Hugiweiher", "DE": "Hugiweiher", "FR": "Hugiweiher", "IT": "Hugiweiher" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "obererbommerweiher",
+    "name": {
+      "EN": "Oberer Bommerweiher",
+      "DE": "Oberer Bommerweiher",
+      "FR": "Oberer Bommerweiher",
+      "IT": "Oberer Bommerweiher"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "marwilermoos",
+    "name": {
+      "EN": "Märwiler Moos",
+      "DE": "Märwiler Moos",
+      "FR": "Märwiler Moos",
+      "IT": "Märwiler Moos"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "nussbommersee",
+    "name": {
+      "EN": "Nussbommersee",
+      "DE": "Nussbommersee",
+      "FR": "Nussbommersee",
+      "IT": "Nussbommersee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "vagoweiher",
+    "name": { "EN": "Vago Weiher", "DE": "Vago Weiher", "FR": "Vago Weiher", "IT": "Vago Weiher" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "wilemersee",
+    "name": { "EN": "Wilemersee", "DE": "Wilemersee", "FR": "Wilemersee", "IT": "Wilemersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "wistererweiher",
+    "name": {
+      "EN": "Wisterer Weiher",
+      "DE": "Wisterer Weiher",
+      "FR": "Wisterer Weiher",
+      "IT": "Wisterer Weiher"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "annecy",
+    "name": {
+      "EN": "Lake Annecy",
+      "DE": "Lac d’Annecy",
+      "FR": "Lac d'Annecy",
+      "IT": "Lago di Annecy"
+    },
+    "countries": ["FR"]
+  },
+  {
+    "key": "bourget",
+    "name": {
+      "EN": "Lake Bourget",
+      "DE": "Lac du Bourget",
+      "FR": "Lac du Bourget",
+      "IT": "Lago del Bourget"
+    },
+    "countries": ["FR"]
+  },
+  {
+    "key": "aiguebelette",
+    "name": {
+      "EN": "Lac d'Aiguebelette",
+      "DE": "Lac d'Aiguebelette",
+      "FR": "Lac d'Aiguebelette",
+      "IT": "Lago di Aiguebelette"
+    },
+    "countries": ["FR"]
+  },
+  {
+    "key": "bled",
+    "name": { "EN": "Lake Bled", "DE": "Bleder See", "FR": "Lac de Bled", "IT": "Lago di Bled" },
+    "countries": ["SI"]
+  },
+  {
+    "key": "pernisko",
+    "name": {
+      "EN": "Lake Perniško",
+      "DE": "Perniško See",
+      "FR": "Lac de Perniško",
+      "IT": "Lago di Perniško"
+    },
+    "countries": ["SI"]
+  },
+  {
+    "key": "gajsevsko",
+    "name": {
+      "EN": "Lake Gajševsko",
+      "DE": "Gajševsko See",
+      "FR": "Lac de Gajševsko",
+      "IT": "Lago di Gajševsko"
+    },
+    "countries": ["SI"]
+  },
+  {
+    "key": "slivnisko",
+    "name": {
+      "EN": "Lake Slivniško",
+      "DE": "Slivniško See",
+      "FR": "Lac de Slivniško",
+      "IT": "Lago di Slivniško"
+    },
+    "countries": ["SI"]
+  },
+  {
+    "key": "ledavsko",
+    "name": {
+      "EN": "Lake Ledavsko",
+      "DE": "Ledavsko See",
+      "FR": "Lac de Ledavsko",
+      "IT": "Lago di Ledavsko"
+    },
+    "countries": ["SI"]
+  },
+  {
+    "key": "smartinsko",
+    "name": {
+      "EN": "Lake Šmartinsko",
+      "DE": "Šmartinsko See",
+      "FR": "Lac de Šmartinsko",
+      "IT": "Lago di Šmartinsko"
+    },
+    "countries": ["SI"]
+  },
+  {
+    "key": "mondsee",
+    "name": { "EN": "Mondsee", "DE": "Mondsee", "FR": "Lac de Mondsee", "IT": "Mondsee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "traunsee",
+    "name": { "EN": "Traunsee", "DE": "Traunsee", "FR": "Traunsee", "IT": "Traunsee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "attersee",
+    "name": { "EN": "Attersee", "DE": "Attersee", "FR": "Attersee", "IT": "Attersee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "faaker",
+    "name": { "EN": "Faaker See", "DE": "Faaker See", "FR": "Faaker See", "IT": "Faaker See" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "fuschlsee",
+    "name": { "EN": "Lake Fuschl", "DE": "Fuschlsee", "FR": "Fuschlsee", "IT": "Fuschlsee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "wolfgangsee",
+    "name": {
+      "EN": "Lake Wolfgang",
+      "DE": "Wolfgangsee",
+      "FR": "Wolfgangsee",
+      "IT": "Wolfgangsee"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "grabensee",
+    "name": { "EN": "Grabensee", "DE": "Grabensee", "FR": "Grabensee", "IT": "Grabensee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "irrsee",
+    "name": { "EN": "Irrsee", "DE": "Irrsee", "FR": "Irrsee", "IT": "Irrsee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "mattsee",
+    "name": { "EN": "Mattsee", "DE": "Mattsee", "FR": "Mattsee", "IT": "Mattsee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "millstaetter",
+    "name": {
+      "EN": "Lake Millstatt",
+      "DE": "Millstätter See",
+      "FR": "Millstätter See",
+      "IT": "Millstätter See"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "obertrumer",
+    "name": { "EN": "Lake Obertrum", "DE": "Obertrumer", "FR": "Obertrumer", "IT": "Obertrumer" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "ossiacher",
+    "name": {
+      "EN": "Lake Ossiach",
+      "DE": "Ossiacher See",
+      "FR": "Ossiacher See",
+      "IT": "Ossiacher See"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "wallersee",
+    "name": { "EN": "Wallersee", "DE": "Wallersee", "FR": "Wallersee", "IT": "Wallersee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "worthersee",
+    "name": { "EN": "Wörthersee", "DE": "Wörthersee", "FR": "Wörthersee", "IT": "Wörthersee" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "zeller",
+    "name": { "EN": "Lake Zell", "DE": "Zeller", "FR": "Zeller", "IT": "Zeller" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "allensteig",
+    "name": {
+      "EN": "Allentsteig",
+      "DE": "Stadtsee Allentsteig",
+      "FR": "Allentsteig",
+      "IT": "Allentsteig"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "edlerseeteich",
+    "name": {
+      "EN": "Edlerseeteich",
+      "DE": "Edlerseeteich",
+      "FR": "Edlerseeteich",
+      "IT": "Edlerseeteich"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "frauenwieserteich",
+    "name": {
+      "EN": "Frauenwieserteich",
+      "DE": "Frauenwieserteich",
+      "FR": "Frauenwieserteich",
+      "IT": "Frauenwieserteich"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "ottenstein",
+    "name": {
+      "EN": "Ottenstein Reservoir",
+      "DE": "Ottensteiner Stausee",
+      "FR": "Réservoir d'Ottenstein",
+      "IT": "Bacino idrico di Ottenstein"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "hallstatter",
+    "name": {
+      "EN": "Lake Hallstatt",
+      "DE": "Hallstätter See",
+      "FR": "Hallstätter See",
+      "IT": "Hallstätter See"
+    },
+    "countries": ["AT"]
+  },
+  {
+    "key": "lunzer",
+    "name": { "EN": "Lunzer See", "DE": "Lunzer See", "FR": "Lunzer See", "IT": "Lunzer See" },
+    "countries": ["AT"]
+  },
+  {
+    "key": "como",
+    "name": { "EN": "Lake Como", "DE": "Comer See", "FR": "Lac de Côme", "IT": "Lago di Como" },
+    "countries": ["IT"]
+  },
+  {
+    "key": "iseo",
+    "name": { "EN": "Lake Iseo", "DE": "Iseosee", "FR": "Lac d'Iseo", "IT": "Lago d'Iseo" },
+    "countries": ["IT"]
+  },
+  {
+    "key": "idro",
+    "name": { "EN": "Lake Idro", "DE": "Idrosee", "FR": "Lac d’Idro", "IT": "Lake Idro" },
+    "countries": ["IT"]
+  },
+  {
+    "key": "caldaro",
+    "name": {
+      "EN": "Lake Caldaro",
+      "DE": "Kalterer See",
+      "FR": "Lac de Caldaro",
+      "IT": "Lago di Caldaro"
+    },
+    "countries": ["IT"]
+  },
+  {
+    "key": "katzen",
+    "name": {
+      "EN": "Oberer Katzensee",
+      "DE": "Oberer Katzensee",
+      "FR": "Oberer Katzensee",
+      "IT": "Oberer Katzensee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "saemtiser",
+    "name": { "EN": "Sämtisersee", "DE": "Sämtisersee", "FR": "Sämtisersee", "IT": "Sämtisersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "seealp",
+    "name": { "EN": "Seealpsee", "DE": "Seealpsee", "FR": "Seealpsee", "IT": "Seealpsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "faehlen",
+    "name": { "EN": "Fählensee", "DE": "Fählensee", "FR": "Fählensee", "IT": "Fählensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "guebsen",
+    "name": { "EN": "Gübsensee", "DE": "Gübsensee", "FR": "Gübsensee", "IT": "Gübsensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "mapgragg",
+    "name": { "EN": "Mapraggsee", "DE": "Mapraggsee", "FR": "Mapraggsee", "IT": "Mapraggsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "seelisberg",
+    "name": {
+      "EN": "Seelisbergsee",
+      "DE": "Seelisbergsee",
+      "FR": "Seelisbergsee",
+      "IT": "Seelisbergsee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "gigerwald",
+    "name": {
+      "EN": "Gigerwaldsee",
+      "DE": "Gigerwaldsee",
+      "FR": "Gigerwaldsee",
+      "IT": "Gigerwaldsee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "garichti",
+    "name": { "EN": "Garichtisee", "DE": "Garichtisee", "FR": "Garichtisee", "IT": "Garichtisee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "oberblegi",
+    "name": {
+      "EN": "Oberblegisee",
+      "DE": "Oberblegisee",
+      "FR": "Oberblegisee",
+      "IT": "Oberblegisee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "murg",
+    "name": {
+      "EN": "Oberer Murgsee",
+      "DE": "Oberer Murgsee",
+      "FR": "Oberer Murgsee",
+      "IT": "Oberer Murgsee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "voralp",
+    "name": { "EN": "Voralpsee", "DE": "Voralpsee", "FR": "Voralpsee", "IT": "Voralpsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "heid",
+    "name": { "EN": "Heidsee", "DE": "Heidsee", "FR": "Heidsee", "IT": "Heidsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "limmeren",
+    "name": { "EN": "Limmerensee", "DE": "Limmerensee", "FR": "Limmerensee", "IT": "Limmerensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "bannalp",
+    "name": { "EN": "Bannalpsee", "DE": "Bannalpsee", "FR": "Bannalpsee", "IT": "Bannalpsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "davoser",
+    "name": { "EN": "Davosersee", "DE": "Davosersee", "FR": "Davosersee", "IT": "Davosersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "griessli",
+    "name": { "EN": "Griesslisee", "DE": "Griesslisee", "FR": "Griesslisee", "IT": "Griesslisee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "pigniu",
+    "name": {
+      "EN": "Lag da Pigniu",
+      "DE": "Panixersee",
+      "FR": "Lag da Pigniu",
+      "IT": "Lag da Pigniu"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "glattalp",
+    "name": { "EN": "Glattalpsee", "DE": "Glattalpsee", "FR": "Glattalpsee", "IT": "Glattalpsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "bianco",
+    "name": { "EN": "Lago Bianco", "DE": "Lago Bianco", "FR": "Lago Bianco", "IT": "Lago Bianco" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "vadret",
+    "name": {
+      "EN": "Lej da Vadret",
+      "DE": "Lej da Vadret",
+      "FR": "Lej da Vadret",
+      "IT": "Lej da Vadret"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "livigno",
+    "name": {
+      "EN": "Lago di Livigno",
+      "DE": "Lago di Livigno",
+      "FR": "Lago di Livigno",
+      "IT": "Lago di Livigno"
+    },
+    "countries": ["IT", "CH"]
+  },
+  {
+    "key": "rims",
+    "name": { "EN": "Lai da Rims", "DE": "Rimsersee", "FR": "Lai da Rims", "IT": "Lai da Rims" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "dogern",
+    "name": {
+      "EN": "Aubecken Dogern",
+      "DE": "Aubecken Dogern",
+      "FR": "Aubecken Dogern",
+      "IT": "Aubecken Dogern"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "klingnau",
+    "name": {
+      "EN": "Klingnauer Stausee",
+      "DE": "Klingnauer Stausee",
+      "FR": "Klingnauer Stausee",
+      "IT": "Klingnauer Stausee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "tailleres",
+    "name": {
+      "EN": "Lac des Taillères",
+      "DE": "Lac des Taillères",
+      "FR": "Lac des Taillères",
+      "IT": "Lac des Taillères"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "wohlen",
+    "name": {
+      "EN": "Lake Wohlen",
+      "DE": "Wohlensee",
+      "FR": "Lac de Wohlen",
+      "IT": "Lac de Wohlen"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "schiffenen",
+    "name": {
+      "EN": "Schiffenensee",
+      "DE": "Schiffenensee",
+      "FR": "Lac de Schiffenen",
+      "IT": "Lac de Schiffenen"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "seedorf",
+    "name": {
+      "EN": "Lac de Seedorf",
+      "DE": "Seedorfsee",
+      "FR": "Lac de Seedorf",
+      "IT": "Lac de Seedorf"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "schwarz",
+    "name": { "EN": "Schwarzsee", "DE": "Schwarzsee", "FR": "Lac Noir", "IT": "Lac Noir" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "montsalvens",
+    "name": {
+      "EN": "Lac de Montsalvens",
+      "DE": "Lac de Montsalvens",
+      "FR": "Lac de Montsalvens",
+      "IT": "Lac de Montsalvens"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "oberstocken",
+    "name": {
+      "EN": "Oberstockensee",
+      "DE": "Oberstockensee",
+      "FR": "Oberstockensee",
+      "IT": "Oberstockensee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "spiez",
+    "name": {
+      "EN": "Stauweiher Spiez",
+      "DE": "Stauweiher Spiez",
+      "FR": "Stauweiher Spiez",
+      "IT": "Stauweiher Spiez"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "mattenalp",
+    "name": {
+      "EN": "Mattenalpsee",
+      "DE": "Mattenalpsee",
+      "FR": "Mattenalpsee",
+      "IT": "Mattenalpsee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "gauli",
+    "name": { "EN": "Gaulisee", "DE": "Gaulisee", "FR": "Gaulisee", "IT": "Gaulisee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "trueb",
+    "name": { "EN": "Trübsee", "DE": "Trübsee", "FR": "Trübsee", "IT": "Trübsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "engstlen",
+    "name": { "EN": "Engstlensee", "DE": "Engstlensee", "FR": "Engstlensee", "IT": "Engstlensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "melch",
+    "name": { "EN": "Melchsee", "DE": "Melchsee", "FR": "Melchsee", "IT": "Melchsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "tannen",
+    "name": { "EN": "Tannensee", "DE": "Tannensee", "FR": "Tannensee", "IT": "Tannensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "trift",
+    "name": { "EN": "Triftsee", "DE": "Triftsee", "FR": "Triftsee", "IT": "Triftsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "goescheneralp",
+    "name": {
+      "EN": "Göscheneralpsee",
+      "DE": "Göscheneralpsee",
+      "FR": "Göscheneralpsee",
+      "IT": "Göscheneralpsee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "gelmer",
+    "name": { "EN": "Gelmersee", "DE": "Gelmersee", "FR": "Gelmersee", "IT": "Gelmersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "raeterichsboden",
+    "name": {
+      "EN": "Räterichsbodensee",
+      "DE": "Räterichsbodensee",
+      "FR": "Räterichsbodensee",
+      "IT": "Räterichsbodensee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "grimsel",
+    "name": { "EN": "Grimselsee", "DE": "Grimselsee", "FR": "Grimselsee", "IT": "Grimselsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "oberalp",
+    "name": { "EN": "Oberalpsee", "DE": "Oberalpsee", "FR": "Oberalpsee", "IT": "Oberalpsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "nalps",
+    "name": {
+      "EN": "Lai da Nalps",
+      "DE": "Lai da Nalps",
+      "FR": "Lai da Nalps",
+      "IT": "Lai da Nalps"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "curnera",
+    "name": {
+      "EN": "Lai da Curnera",
+      "DE": "Lai da Curnera",
+      "FR": "Lai da Curnera",
+      "IT": "Lai da Curnera"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sontga",
+    "name": {
+      "EN": "Lai da Sontga Maria",
+      "DE": "Lai da Sontga Maria",
+      "FR": "Lai da Sontga Maria",
+      "IT": "Lai da Sontga Maria"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "greina",
+    "name": {
+      "EN": "Laghet la Greina",
+      "DE": "Laghet la Greina",
+      "FR": "Laghet la Greina",
+      "IT": "Laghet la Greina"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "zervreila",
+    "name": {
+      "EN": "Zervreilasee",
+      "DE": "Zervreilasee",
+      "FR": "Zervreilasee",
+      "IT": "Zervreilasee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "luzzone",
+    "name": {
+      "EN": "Lago di Luzzone",
+      "DE": "Lago di Luzzone",
+      "FR": "Lago di Luzzone",
+      "IT": "Lago di Luzzone"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sufner",
+    "name": { "EN": "Sufnersee", "DE": "Sufnersee", "FR": "Sufnersee", "IT": "Sufnersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "hongrin",
+    "name": {
+      "EN": "Lac de l'Hongrin",
+      "DE": "Lac de l'Hongrin",
+      "FR": "Lac de l'Hongrin",
+      "IT": "Lac de l'Hongrin"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "taney",
+    "name": {
+      "EN": "Lac de Taney",
+      "DE": "Lac de Taney",
+      "FR": "Lac de Taney",
+      "IT": "Lac de Taney"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "versvey",
+    "name": {
+      "EN": "Étang de Versvey",
+      "DE": "Étang de Versvey",
+      "FR": "Étang de Versvey",
+      "IT": "Étang de Versvey"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lessoc",
+    "name": {
+      "EN": "Lac de Lessoc",
+      "DE": "Lac de Lessoc",
+      "FR": "Lac de Lessoc",
+      "IT": "Lac de Lessoc"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "vernex",
+    "name": {
+      "EN": "Lac du Vernex",
+      "DE": "Lac du Vernex",
+      "FR": "Lac du Vernex",
+      "IT": "Lac du Vernex"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "arnen",
+    "name": { "EN": "Arnensee", "DE": "Arnensee", "FR": "Lac d'Arnon", "IT": "Lac d'Arnon" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sanetsch",
+    "name": {
+      "EN": "Sanetschsee",
+      "DE": "Sanetschsee",
+      "FR": "Lac de Sénin",
+      "IT": "Lac de Sénin"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "dauben",
+    "name": { "EN": "Daubensee", "DE": "Daubensee", "FR": "Daubensee", "IT": "Daubensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "iffig",
+    "name": { "EN": "Iffigsee", "DE": "Iffigsee", "FR": "Iffigsee", "IT": "Iffigsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "faverge",
+    "name": {
+      "EN": "Favergesee",
+      "DE": "Favergesee",
+      "FR": "Lac de Faverges",
+      "IT": "Lac de Faverges"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "tseuzier",
+    "name": {
+      "EN": "Lac de Tseuzier",
+      "DE": "Lac de Tseuzier",
+      "FR": "Lac de Tseuzier",
+      "IT": "Lac de Tseuzier"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "oberaar",
+    "name": { "EN": "Oberaarsee", "DE": "Oberaarsee", "FR": "Oberaarsee", "IT": "Oberaarsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "gibidum",
+    "name": {
+      "EN": "Stausee Gibidum",
+      "DE": "Stausee Gibidum",
+      "FR": "Stausee Gibidum",
+      "IT": "Stausee Gibidum"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lucendro",
+    "name": {
+      "EN": "Lago di Lucendro",
+      "DE": "Lago di Lucendro",
+      "FR": "Lago di Lucendro",
+      "IT": "Lago di Lucendro"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "tote",
+    "name": { "EN": "Totesee", "DE": "Totesee", "FR": "Totesee", "IT": "Totesee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "truebten",
+    "name": { "EN": "Trübtensee", "DE": "Trübtensee", "FR": "Trübtensee", "IT": "Trübtensee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "chueeboden",
+    "name": {
+      "EN": "Chüebodensee",
+      "DE": "Chüebodensee",
+      "FR": "Chüebodensee",
+      "IT": "Chüebodensee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "gries",
+    "name": { "EN": "Griessee", "DE": "Griessee", "FR": "Griessee", "IT": "Griessee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "cavagnoeoe",
+    "name": {
+      "EN": "Lago dei Cavagnöö",
+      "DE": "Lago dei Cavagnöö",
+      "FR": "Lago dei Cavagnöö",
+      "IT": "Lago dei Cavagnöö"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "nero",
+    "name": { "EN": "Lago Nero", "DE": "Lago Nero", "FR": "Lago Nero", "IT": "Lago Nero" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "robiei",
+    "name": {
+      "EN": "Lago di Robièi",
+      "DE": "Lago di Robièi",
+      "FR": "Lago di Robièi",
+      "IT": "Lago di Robièi"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "zoett",
+    "name": {
+      "EN": "Lago del Zött",
+      "DE": "Lago del Zött",
+      "FR": "Lago del Zött",
+      "IT": "Lago del Zött"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "crosa",
+    "name": {
+      "EN": "Laghi della Cròsa",
+      "DE": "Laghi della Cròsa",
+      "FR": "Laghi della Cròsa",
+      "IT": "Laghi della Cròsa"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "geisspfad",
+    "name": {
+      "EN": "Geisspfadsee",
+      "DE": "Geisspfadsee",
+      "FR": "Geisspfadsee",
+      "IT": "Geisspfadsee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sella",
+    "name": {
+      "EN": "Lago della Sella",
+      "DE": "Lago della Sella",
+      "FR": "Lago della Sella",
+      "IT": "Lago della Sella"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "ritom",
+    "name": { "EN": "Lago Ritóm", "DE": "Lago Ritóm", "FR": "Lago Ritóm", "IT": "Lago Ritóm" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "naret",
+    "name": {
+      "EN": "Lago del Narèt",
+      "DE": "Lago del Narèt",
+      "FR": "Lago del Narèt",
+      "IT": "Lago del Narèt"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "tremorgio",
+    "name": {
+      "EN": "Lago Tremorgio",
+      "DE": "Lago Tremorgio",
+      "FR": "Lago Tremorgio",
+      "IT": "Lago Tremorgio"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "sambuco",
+    "name": {
+      "EN": "Lago del Sambuco",
+      "DE": "Lago del Sambuco",
+      "FR": "Lago del Sambuco",
+      "IT": "Lago del Sambuco"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "morghirolo",
+    "name": {
+      "EN": "Lago di Morghirolo",
+      "DE": "Lago di Morghirolo",
+      "FR": "Lago di Morghirolo",
+      "IT": "Lago di Morghirolo"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "laghetto",
+    "name": { "EN": "Laghetto", "DE": "Laghetto", "FR": "Laghetto", "IT": "Laghetto" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "malvaglia",
+    "name": {
+      "EN": "Lago di Malvaglia",
+      "DE": "Lago di Malvaglia",
+      "FR": "Lago di Malvaglia",
+      "IT": "Lago di Malvaglia"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "lei",
+    "name": { "EN": "Lago di Lei", "DE": "Lago di Lei", "FR": "Lago di Lei", "IT": "Lago di Lei" },
+    "countries": ["IT", "CH"]
+  },
+  {
+    "key": "isola",
+    "name": {
+      "EN": "Lago d'Isola",
+      "DE": "Lago d'Isola",
+      "FR": "Lago d'Isola",
+      "IT": "Lago d'Isola"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "marmorera",
+    "name": {
+      "EN": "Lai da Marmorera",
+      "DE": "Marmorerasee",
+      "FR": "Lai da Marmorera",
+      "IT": "Lai da Marmorera"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "cavloc",
+    "name": {
+      "EN": "Lägh da Cavloc",
+      "DE": "Lägh da Cavloc",
+      "FR": "Lägh da Cavloc",
+      "IT": "Lägh da Cavloc"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "albigna",
+    "name": {
+      "EN": "Albigna Lake",
+      "DE": "Albignasee",
+      "FR": "Lago di Albigna",
+      "IT": "Lago di Albigna"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "rhone",
+    "name": { "EN": "Rhône", "DE": "Rhone", "FR": "Rhône", "IT": "Rhône" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "chauderets",
+    "name": {
+      "EN": "Étang des Chauderets",
+      "DE": "Étang des Chauderets",
+      "FR": "Étang des Chauderets",
+      "IT": "Étang des Chauderets"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "avale",
+    "name": { "EN": "Étang Avale", "DE": "Étang Avale", "FR": "Étang Avale", "IT": "Étang Avale" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "salanfe",
+    "name": {
+      "EN": "Lac de Salanfe",
+      "DE": "Salanfe-See",
+      "FR": "Lac de Salanfe",
+      "IT": "Lac de Salanfe"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "emosson",
+    "name": {
+      "EN": "Lake Émosson",
+      "DE": "Lac d'Émosson",
+      "FR": "Lac d'Émosson",
+      "IT": "Lac d'Émosson"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "vieuxemosson",
+    "name": {
+      "EN": "Lac du Vieux Émosson",
+      "DE": "Lac du Vieux Émosson",
+      "FR": "Lac du Vieux Émosson",
+      "IT": "Lac du Vieux Émosson"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "domaine",
+    "name": {
+      "EN": "Domaine des Iles",
+      "DE": "Domaine des Iles",
+      "FR": "Domaine des Iles",
+      "IT": "Domaine des Iles"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "fully",
+    "name": {
+      "EN": "Lac de Fully",
+      "DE": "Lac de Fully",
+      "FR": "Lac de Fully",
+      "IT": "Lac de Fully"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "cleuson",
+    "name": {
+      "EN": "Lac de Cleuson",
+      "DE": "Lac de Cleuson",
+      "FR": "Lac de Cleuson",
+      "IT": "Lac de Cleuson"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "vaux",
+    "name": {
+      "EN": "Lac des Vaux",
+      "DE": "Lac des Vaux",
+      "FR": "Lac des Vaux",
+      "IT": "Lac des Vaux"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "louvie",
+    "name": {
+      "EN": "Lac de Louvie",
+      "DE": "Lac de Louvie",
+      "FR": "Lac de Louvie",
+      "IT": "Lac de Louvie"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "ill",
+    "name": { "EN": "Illsee", "DE": "Illsee", "FR": "Illsee", "IT": "Illsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "moiry",
+    "name": {
+      "EN": "Lac de Moiry",
+      "DE": "Lac de Moiry",
+      "FR": "Lac de Moiry",
+      "IT": "Lac de Moiry"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "dix",
+    "name": { "EN": "Lac des Dix", "DE": "Lac des Dix", "FR": "Lac des Dix", "IT": "Lac des Dix" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "bortel",
+    "name": { "EN": "Bortelsee", "DE": "Bortelsee", "FR": "Bortelsee", "IT": "Bortelsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "mattmark",
+    "name": {
+      "EN": "Stausee Mattmark",
+      "DE": "Stausee Mattmark",
+      "FR": "Stausee Mattmark",
+      "IT": "Stausee Mattmark"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "alzasca",
+    "name": {
+      "EN": "Lago d'Alzasca",
+      "DE": "Alzascasee",
+      "FR": "Lac d'Alzasca",
+      "IT": "Lac d'Alzasca"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "vogorno",
+    "name": {
+      "EN": "Lago di Vogorno",
+      "DE": "Lago di Vogorno",
+      "FR": "Lago di Vogorno",
+      "IT": "Lago di Vogorno"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "palagnedra",
+    "name": {
+      "EN": "Lago di Palagnedra",
+      "DE": "Lago di Palagnedra",
+      "FR": "Lago di Palagnedra",
+      "IT": "Lago di Palagnedra"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "cama",
+    "name": {
+      "EN": "Lagh de Cama",
+      "DE": "Lagh de Cama",
+      "FR": "Lagh de Cama",
+      "IT": "Lagh de Cama"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "champex",
+    "name": {
+      "EN": "Lac de Champex",
+      "DE": "Lac de Champex",
+      "FR": "Lac de Champex",
+      "IT": "Lac de Champex"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "toules",
+    "name": {
+      "EN": "Lac des Toules",
+      "DE": "Lac des Toules",
+      "FR": "Lac des Toules",
+      "IT": "Lac des Toules"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "mauvoisin",
+    "name": {
+      "EN": "Lac de Mauvoisin",
+      "DE": "Lac de Mauvoisin",
+      "FR": "Lac de Mauvoisin",
+      "IT": "Lac de Mauvoisin"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "muzzano",
+    "name": {
+      "EN": "Lago di Muzzano",
+      "DE": "Lago di Muzzano",
+      "FR": "Lago di Muzzano",
+      "IT": "Lago di Muzzano"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "ober",
+    "name": { "EN": "Obersee", "DE": "Obersee", "FR": "Obersee", "IT": "Obersee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "waegitaler",
+    "name": {
+      "EN": "Wägitalersee",
+      "DE": "Wägitalersee",
+      "FR": "Wägitalersee",
+      "IT": "Wägitalersee"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "wichel",
+    "name": { "EN": "Wichelsee", "DE": "Wichelsee", "FR": "Wichelsee", "IT": "Wichelsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "mutt",
+    "name": { "EN": "Muttsee", "DE": "Muttsee", "FR": "Muttsee", "IT": "Muttsee" },
+    "countries": ["CH"]
+  },
+  {
+    "key": "ova",
+    "name": {
+      "EN": "Lai da Ova Spin",
+      "DE": "Lai da Ova Spin",
+      "FR": "Lai da Ova Spin",
+      "IT": "Lai da Ova Spin"
+    },
+    "countries": ["CH"]
+  },
+  {
+    "key": "riegsee",
+    "name": { "EN": "Riegsee", "DE": "Riegsee", "FR": "Riegsee", "IT": "Riegsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "worthsee",
+    "name": { "EN": "Wörthsee", "DE": "Wörthsee", "FR": "Wörthsee", "IT": "Wörthsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "weissensee",
+    "name": { "EN": "Weissensee", "DE": "Weissensee", "FR": "Weissensee", "IT": "Weissensee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "walchensee",
+    "name": { "EN": "Walchensee", "DE": "Walchensee", "FR": "Walchensee", "IT": "Walchensee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "tachinger",
+    "name": {
+      "EN": "Tachinger See",
+      "DE": "Tachinger See",
+      "FR": "Tachinger See",
+      "IT": "Tachinger See"
+    },
+    "countries": ["DE"]
+  },
+  {
+    "key": "tegernsee",
+    "name": { "EN": "Tegernsee", "DE": "Tegernsee", "FR": "Tegernsee", "IT": "Tegernsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "starnberger",
+    "name": {
+      "EN": "Lake Starnberg",
+      "DE": "Starnberger See",
+      "FR": "Starnberger See",
+      "IT": "Starnberger See"
+    },
+    "countries": ["DE"]
+  },
+  {
+    "key": "staffelsee",
+    "name": { "EN": "Staffelsee", "DE": "Staffelsee", "FR": "Staffelsee", "IT": "Staffelsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "simssee",
+    "name": { "EN": "Simssee", "DE": "Simssee", "FR": "Simssee", "IT": "Simssee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "seehamer",
+    "name": {
+      "EN": "Seehamer See",
+      "DE": "Seehamer See",
+      "FR": "Seehamer See",
+      "IT": "Seehamer See"
+    },
+    "countries": ["DE"]
+  },
+  {
+    "key": "schliersee",
+    "name": { "EN": "Schliersee", "DE": "Schliersee", "FR": "Schliersee", "IT": "Schliersee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "niedersonthofener",
+    "name": {
+      "EN": "Niedersonthofener See",
+      "DE": "Niedersonthofener See",
+      "FR": "Niedersonthofener See",
+      "IT": "Niedersonthofener See"
+    },
+    "countries": ["DE"]
+  },
+  {
+    "key": "konigsee",
+    "name": { "EN": "Königssee", "DE": "Königssee", "FR": "Königssee", "IT": "Königssee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "kochelsee",
+    "name": { "EN": "Lake Kochel", "DE": "Kochelsee", "FR": "Kochelsee", "IT": "Kochelsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "hopfensee",
+    "name": { "EN": "Hopfensee", "DE": "Hopfensee", "FR": "Hopfensee", "IT": "Hopfensee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "gruntensee",
+    "name": { "EN": "Grüntensee", "DE": "Grüntensee", "FR": "Grüntensee", "IT": "Grüntensee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "grosseralpsee",
+    "name": {
+      "EN": "Großer Alpsee",
+      "DE": "Großer Alpsee",
+      "FR": "Großer Alpsee",
+      "IT": "Großer Alpsee"
+    },
+    "countries": ["DE"]
+  },
+  {
+    "key": "eibsee",
+    "name": { "EN": "Eibsee", "DE": "Eibsee", "FR": "Eibsee", "IT": "Eibsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "chiemsee",
+    "name": { "EN": "Chiemsee", "DE": "Chiemsee", "FR": "Chiemsee", "IT": "Chiemsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "bannwaldsee",
+    "name": { "EN": "Bannwaldsee", "DE": "Bannwaldsee", "FR": "Bannwaldsee", "IT": "Bannwaldsee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "ammersee",
+    "name": { "EN": "Ammersee", "DE": "Ammersee", "FR": "Ammersee", "IT": "Ammersee" },
+    "countries": ["DE"]
+  },
+  {
+    "key": "arendsee",
+    "name": { "EN": "Arendsee", "DE": "Arendsee", "FR": "Arendsee", "IT": "Arendsee" },
+    "countries": ["DE"]
+  }
+]

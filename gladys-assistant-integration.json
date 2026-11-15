@@ -1,177 +1,666 @@
 {
   "manifest_version": 1,
   "type": "device",
-  "name": "Demo Devices Template",
+  "name": "Alplakes",
   "description": {
-    "en": "Starter template showing sensors, a switch, a dimmable light and a smart plug.",
-    "fr": "Template de démarrage : capteurs, interrupteur, lampe variable et prise connectée."
+    "en": "Water temperature of Alpine lakes (Léman, Annecy, Bourget…) and its forecast, by Eawag.",
+    "fr": "Température de l'eau des lacs alpins (Léman, Annecy, Bourget…) et sa prévision, par l'Eawag.",
+    "de": "Wassertemperatur der Alpenseen (Genfersee, Annecy, Bodensee…) und ihre Prognose, von der Eawag.",
+    "es": "Temperatura del agua de los lagos alpinos (Lemán, Annecy, Bourget…) y su previsión, por el Eawag."
   },
   "version": "1.0.0",
-  "docker_image": "ghcr.io/gladysassistant/integration-template-js:1.0.0",
-  "gladys_version": ">=5.1.0",
-  "cover_image": "https://raw.githubusercontent.com/GladysAssistant/integration-template-js/master/cover.png",
-  "categories": ["lighting", "security", "environment"],
-  "transports": ["local", "cloud"],
+  "docker_image": "ghcr.io/guim31/gladys-alplakes:1.0.0",
+  "gladys_version": ">=5.3.0",
+  "cover_image": "https://raw.githubusercontent.com/guim31/gladys-alplakes/main/cover.png",
+  "categories": ["environment"],
+  "countries": ["CH", "FR", "IT", "DE", "AT", "SI"],
+  "transports": ["cloud"],
   "config_schema": [
     {
       "key": "intro",
       "type": "section",
-      "label": { "en": "Getting started", "fr": "Pour commencer" },
+      "label": {
+        "en": "Your lakes",
+        "fr": "Vos lacs",
+        "de": "Deine Seen",
+        "es": "Sus lagos"
+      },
       "description": {
-        "en": "The demo weather station reads real data from the free Open-Meteo API: pick the coordinates to observe. No account, no API key.",
-        "fr": "La station météo de démonstration lit de vraies données via l'API gratuite Open-Meteo : choisissez les coordonnées à observer. Pas de compte, pas de clé d'API."
+        "en": "Follow the water temperature of Alpine lakes, simulated by Alplakes (Eawag) and refreshed every 3 hours. \"Find lakes\" below lists their names. Save, then create the devices in the Discover tab.",
+        "fr": "Suivez la température de l'eau des lacs alpins, simulée par Alplakes (Eawag) et mise à jour toutes les 3 heures. « Chercher des lacs » ci-dessous liste leurs noms. Enregistrez, puis créez les appareils dans l'onglet Découverte.",
+        "de": "Verfolge die Wassertemperatur der Alpenseen, simuliert von Alplakes (Eawag) und alle 3 Stunden aktualisiert. „Seen suchen“ unten listet ihre Namen auf. Speichere und lege dann die Geräte im Tab „Entdecken“ an.",
+        "es": "Siga la temperatura del agua de los lagos alpinos, simulada por Alplakes (Eawag) y actualizada cada 3 horas. «Buscar lagos» más abajo lista sus nombres. Guarde y, después, cree los dispositivos en la pestaña Descubrir."
       },
       "links": [
         {
-          "url": "https://open-meteo.com/en/docs",
-          "label": { "en": "Open-Meteo documentation", "fr": "Documentation Open-Meteo" }
+          "url": "https://github.com/guim31/gladys-alplakes/blob/main/docs/en.md",
+          "label": {
+            "en": "Setup guide",
+            "fr": "Guide d'installation",
+            "de": "Installationsanleitung",
+            "es": "Guía de instalación"
+          }
         }
       ]
     },
     {
-      "key": "latitude",
-      "type": "number",
-      "label": { "en": "Latitude", "fr": "Latitude" },
-      "description": {
-        "en": "Latitude used for the demo weather sensor.",
-        "fr": "Latitude utilisée par le capteur météo de démonstration."
-      },
-      "placeholder": { "en": "e.g. 48.8566", "fr": "ex. 48.8566" },
-      "required": true,
-      "default": 48.8566,
-      "min": -90,
-      "max": 90
-    },
-    {
-      "key": "longitude",
-      "type": "number",
-      "label": { "en": "Longitude", "fr": "Longitude" },
-      "description": {
-        "en": "Longitude used for the demo weather sensor.",
-        "fr": "Longitude utilisée par le capteur météo de démonstration."
-      },
-      "placeholder": { "en": "e.g. 2.3522", "fr": "ex. 2.3522" },
-      "required": true,
-      "default": 2.3522,
-      "min": -180,
-      "max": 180
-    },
-    {
-      "key": "unit",
-      "type": "select",
-      "label": { "en": "Temperature unit", "fr": "Unité de température" },
+      "key": "lakes",
+      "type": "string",
       "required": false,
-      "default": "celsius",
+      "default": "",
+      "label": {
+        "en": "Lakes",
+        "fr": "Lacs",
+        "de": "Seen",
+        "es": "Lagos"
+      },
+      "placeholder": {
+        "en": "Léman, Annecy, Bourget",
+        "fr": "Léman, Annecy, Bourget",
+        "de": "Genfersee, Thunersee",
+        "es": "Léman, Annecy, Garda"
+      },
+      "description": {
+        "en": "Names or keys, separated by commas (10 at most). One device per lake, from its 1D model.",
+        "fr": "Noms ou clés, séparés par des virgules (10 au plus). Un appareil par lac, d'après son modèle 1D.",
+        "de": "Namen oder Schlüssel, durch Kommas getrennt (höchstens 10). Ein Gerät pro See, aus seinem 1D-Modell.",
+        "es": "Nombres o claves, separados por comas (10 como máximo). Un dispositivo por lago, según su modelo 1D."
+      }
+    },
+    {
+      "key": "points",
+      "type": "string",
+      "required": false,
+      "default": "",
+      "label": {
+        "en": "Precise points (optional)",
+        "fr": "Points précis (facultatif)",
+        "de": "Genaue Punkte (optional)",
+        "es": "Puntos precisos (opcional)"
+      },
+      "placeholder": {
+        "en": "Léman: 46.2107, 6.1613 Bains des Pâquis",
+        "fr": "Léman: 46.2107, 6.1613 Bains des Pâquis",
+        "de": "Léman: 46.2107, 6.1613 Bains des Pâquis",
+        "es": "Léman: 46.2107, 6.1613 Bains des Pâquis"
+      },
+      "description": {
+        "en": "A beach or a harbour: \"lake: latitude, longitude name\", separated by semicolons (10 at most). Only for the lakes with a 3D model.",
+        "fr": "Une plage ou un port : « lac: latitude, longitude nom », séparés par des points-virgules (10 au plus). Seulement pour les lacs qui ont un modèle 3D.",
+        "de": "Ein Strand oder ein Hafen: „See: Breite, Länge Name“, durch Semikolons getrennt (höchstens 10). Nur für Seen mit 3D-Modell.",
+        "es": "Una playa o un puerto: «lago: latitud, longitud nombre», separados por punto y coma (10 como máximo). Solo para los lagos con modelo 3D."
+      }
+    },
+    {
+      "key": "depth",
+      "type": "select",
+      "required": false,
+      "default": "0",
+      "label": {
+        "en": "Depth",
+        "fr": "Profondeur",
+        "de": "Tiefe",
+        "es": "Profundidad"
+      },
+      "description": {
+        "en": "Depth of the temperature: the surface for swimming, deeper for fishing or diving.",
+        "fr": "Profondeur de la température : la surface pour la baignade, plus bas pour la pêche ou la plongée.",
+        "de": "Tiefe der Temperatur: die Oberfläche zum Baden, tiefer zum Angeln oder Tauchen.",
+        "es": "Profundidad de la temperatura: la superficie para el baño, más abajo para la pesca o el buceo."
+      },
       "options": [
-        { "value": "celsius", "label": { "en": "Celsius", "fr": "Celsius" } },
-        { "value": "fahrenheit", "label": { "en": "Fahrenheit", "fr": "Fahrenheit" } }
+        {
+          "value": "0",
+          "label": {
+            "en": "Surface",
+            "fr": "Surface",
+            "de": "Oberfläche",
+            "es": "Superficie"
+          }
+        },
+        {
+          "value": "1",
+          "label": {
+            "en": "1 m",
+            "fr": "1 m",
+            "de": "1 m",
+            "es": "1 m"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "en": "2 m",
+            "fr": "2 m",
+            "de": "2 m",
+            "es": "2 m"
+          }
+        },
+        {
+          "value": "5",
+          "label": {
+            "en": "5 m",
+            "fr": "5 m",
+            "de": "5 m",
+            "es": "5 m"
+          }
+        },
+        {
+          "value": "10",
+          "label": {
+            "en": "10 m",
+            "fr": "10 m",
+            "de": "10 m",
+            "es": "10 m"
+          }
+        }
       ]
     },
     {
-      "key": "poll_frequency",
-      "type": "number",
-      "label": { "en": "Refresh interval (s)", "fr": "Intervalle de rafraîchissement (s)" },
-      "description": {
-        "en": "How often sensors are polled, in seconds (one minute minimum).",
-        "fr": "Fréquence d'interrogation des capteurs, en secondes (une minute minimum)."
-      },
+      "key": "language",
+      "type": "select",
       "required": false,
-      "default": 300,
-      "min": 60,
-      "max": 3600
+      "default": "fr",
+      "label": {
+        "en": "Language of the names",
+        "fr": "Langue des noms",
+        "de": "Sprache der Namen",
+        "es": "Idioma de los nombres"
+      },
+      "description": {
+        "en": "Language of the lake and feature names, set when the devices are created.",
+        "fr": "Langue des noms des lacs et des fonctionnalités, fixée à la création des appareils.",
+        "de": "Sprache der See- und Funktionsnamen, beim Anlegen der Geräte festgelegt.",
+        "es": "Idioma de los nombres de los lagos y de las funciones, fijado al crear los dispositivos."
+      },
+      "options": [
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "Anglais",
+            "de": "Englisch",
+            "es": "Inglés"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "French",
+            "fr": "Français",
+            "de": "Französisch",
+            "es": "Francés"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "German",
+            "fr": "Allemand",
+            "de": "Deutsch",
+            "es": "Alemán"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Spanish",
+            "fr": "Espagnol",
+            "de": "Spanisch",
+            "es": "Español"
+          }
+        }
+      ]
+    },
+    {
+      "key": "about",
+      "type": "section",
+      "label": {
+        "en": "About the data",
+        "fr": "À propos des données",
+        "de": "Über die Daten",
+        "es": "Acerca de los datos"
+      },
+      "description": {
+        "en": "Simulations of the Alplakes models (Eawag), calibrated on measurements: not direct measurements. Data: Alplakes, Eawag (CC BY 4.0).",
+        "fr": "Simulations des modèles Alplakes (Eawag), calées sur des mesures : pas des mesures directes. Données : Alplakes, Eawag (CC BY 4.0).",
+        "de": "Simulationen der Alplakes-Modelle (Eawag), an Messungen kalibriert: keine direkten Messungen. Daten: Alplakes, Eawag (CC BY 4.0).",
+        "es": "Simulaciones de los modelos Alplakes (Eawag), calibradas con mediciones: no son mediciones directas. Datos: Alplakes, Eawag (CC BY 4.0)."
+      },
+      "links": [
+        {
+          "url": "https://www.alplakes.eawag.ch",
+          "label": {
+            "en": "Alplakes website",
+            "fr": "Site Alplakes",
+            "de": "Alplakes-Website",
+            "es": "Sitio de Alplakes"
+          }
+        }
+      ]
     }
   ],
   "actions": [
     {
-      "key": "test_weather",
-      "label": { "en": "Test the weather provider", "fr": "Tester le fournisseur météo" },
-      "timeout_seconds": 30
-    },
-    {
-      "key": "identify",
-      "label": { "en": "Identify a device", "fr": "Identifier un appareil" },
+      "key": "search_lakes",
+      "label": {
+        "en": "Find lakes",
+        "fr": "Chercher des lacs",
+        "de": "Seen suchen",
+        "es": "Buscar lagos"
+      },
+      "description": {
+        "en": "Lists the lakes matching a name, with their key. Empty: the lakes with a 3D model.",
+        "fr": "Liste les lacs qui correspondent à un nom, avec leur clé. Vide : les lacs qui ont un modèle 3D.",
+        "de": "Listet die Seen auf, die zu einem Namen passen, mit ihrem Schlüssel. Leer: die Seen mit 3D-Modell.",
+        "es": "Lista los lagos que corresponden a un nombre, con su clave. Vacío: los lagos con modelo 3D."
+      },
       "fields": [
         {
-          "key": "device",
-          "type": "select",
-          "source": "devices",
-          "label": { "en": "Device", "fr": "Appareil" },
-          "required": true
+          "key": "query",
+          "type": "string",
+          "required": false,
+          "label": {
+            "en": "Name",
+            "fr": "Nom",
+            "de": "Name",
+            "es": "Nombre"
+          },
+          "placeholder": {
+            "en": "Annecy, Zurich, Garda…",
+            "fr": "Annecy, Zurich, Garde…",
+            "de": "Annecy, Zürich, Garda…",
+            "es": "Annecy, Zúrich, Garda…"
+          }
         }
       ]
     }
   ],
   "scene_triggers": [
     {
-      "key": "motion_detected",
-      "label": { "en": "Motion detected", "fr": "Mouvement détecté" },
+      "key": "threshold_crossed",
+      "label": {
+        "en": "Water temperature threshold crossed",
+        "fr": "Seuil de température de l'eau franchi",
+        "de": "Schwelle der Wassertemperatur überschritten",
+        "es": "Umbral de temperatura del agua cruzado"
+      },
       "description": {
-        "en": "A demo motion sensor saw a person or an animal move.",
-        "fr": "Un détecteur de démonstration a vu bouger une personne ou un animal."
+        "en": "The water of a followed lake reaches a temperature, or falls back 0.3 °C below it: now, or in the forecast of the next 48 hours.",
+        "fr": "L'eau d'un lac suivi atteint une température, ou repasse 0,3 °C en dessous : maintenant, ou dans la prévision des 48 prochaines heures.",
+        "de": "Das Wasser eines verfolgten Sees erreicht eine Temperatur oder fällt 0,3 °C darunter: jetzt oder in der Prognose der nächsten 48 Stunden.",
+        "es": "El agua de un lago seguido alcanza una temperatura o vuelve a bajar 0,3 °C por debajo: ahora o en la previsión de las próximas 48 horas."
       },
       "fields": [
         {
-          "key": "device",
+          "key": "lake",
           "type": "select",
           "source": "devices",
-          "label": { "en": "Sensor", "fr": "Détecteur" }
+          "label": {
+            "en": "Lake or point",
+            "fr": "Lac ou point",
+            "de": "See oder Punkt",
+            "es": "Lago o punto"
+          }
         },
         {
-          "key": "target",
-          "type": "multi_select",
-          "label": { "en": "What moved", "fr": "Ce qui a bougé" },
+          "key": "series",
+          "type": "select",
+          "label": {
+            "en": "Value",
+            "fr": "Valeur",
+            "de": "Wert",
+            "es": "Valor"
+          },
           "options": [
-            { "value": "person", "label": { "en": "Person", "fr": "Personne" } },
-            { "value": "animal", "label": { "en": "Animal", "fr": "Animal" } }
+            {
+              "value": "current",
+              "label": {
+                "en": "Temperature now",
+                "fr": "Température actuelle",
+                "de": "Aktuelle Temperatur",
+                "es": "Temperatura actual"
+              }
+            },
+            {
+              "value": "forecast_48h",
+              "label": {
+                "en": "Max. of the next 48 h",
+                "fr": "Max. des 48 prochaines heures",
+                "de": "Max. der nächsten 48 h",
+                "es": "Máx. de las próximas 48 h"
+              }
+            }
+          ]
+        },
+        {
+          "key": "threshold",
+          "type": "multi_select",
+          "label": {
+            "en": "Temperature",
+            "fr": "Température",
+            "de": "Temperatur",
+            "es": "Temperatura"
+          },
+          "options": [
+            {
+              "value": "10",
+              "label": {
+                "en": "10 °C",
+                "fr": "10 °C",
+                "de": "10 °C",
+                "es": "10 °C"
+              }
+            },
+            {
+              "value": "11",
+              "label": {
+                "en": "11 °C",
+                "fr": "11 °C",
+                "de": "11 °C",
+                "es": "11 °C"
+              }
+            },
+            {
+              "value": "12",
+              "label": {
+                "en": "12 °C",
+                "fr": "12 °C",
+                "de": "12 °C",
+                "es": "12 °C"
+              }
+            },
+            {
+              "value": "13",
+              "label": {
+                "en": "13 °C",
+                "fr": "13 °C",
+                "de": "13 °C",
+                "es": "13 °C"
+              }
+            },
+            {
+              "value": "14",
+              "label": {
+                "en": "14 °C",
+                "fr": "14 °C",
+                "de": "14 °C",
+                "es": "14 °C"
+              }
+            },
+            {
+              "value": "15",
+              "label": {
+                "en": "15 °C",
+                "fr": "15 °C",
+                "de": "15 °C",
+                "es": "15 °C"
+              }
+            },
+            {
+              "value": "16",
+              "label": {
+                "en": "16 °C",
+                "fr": "16 °C",
+                "de": "16 °C",
+                "es": "16 °C"
+              }
+            },
+            {
+              "value": "17",
+              "label": {
+                "en": "17 °C",
+                "fr": "17 °C",
+                "de": "17 °C",
+                "es": "17 °C"
+              }
+            },
+            {
+              "value": "18",
+              "label": {
+                "en": "18 °C",
+                "fr": "18 °C",
+                "de": "18 °C",
+                "es": "18 °C"
+              }
+            },
+            {
+              "value": "19",
+              "label": {
+                "en": "19 °C",
+                "fr": "19 °C",
+                "de": "19 °C",
+                "es": "19 °C"
+              }
+            },
+            {
+              "value": "20",
+              "label": {
+                "en": "20 °C",
+                "fr": "20 °C",
+                "de": "20 °C",
+                "es": "20 °C"
+              }
+            },
+            {
+              "value": "21",
+              "label": {
+                "en": "21 °C",
+                "fr": "21 °C",
+                "de": "21 °C",
+                "es": "21 °C"
+              }
+            },
+            {
+              "value": "22",
+              "label": {
+                "en": "22 °C",
+                "fr": "22 °C",
+                "de": "22 °C",
+                "es": "22 °C"
+              }
+            },
+            {
+              "value": "23",
+              "label": {
+                "en": "23 °C",
+                "fr": "23 °C",
+                "de": "23 °C",
+                "es": "23 °C"
+              }
+            },
+            {
+              "value": "24",
+              "label": {
+                "en": "24 °C",
+                "fr": "24 °C",
+                "de": "24 °C",
+                "es": "24 °C"
+              }
+            },
+            {
+              "value": "25",
+              "label": {
+                "en": "25 °C",
+                "fr": "25 °C",
+                "de": "25 °C",
+                "es": "25 °C"
+              }
+            },
+            {
+              "value": "26",
+              "label": {
+                "en": "26 °C",
+                "fr": "26 °C",
+                "de": "26 °C",
+                "es": "26 °C"
+              }
+            },
+            {
+              "value": "27",
+              "label": {
+                "en": "27 °C",
+                "fr": "27 °C",
+                "de": "27 °C",
+                "es": "27 °C"
+              }
+            },
+            {
+              "value": "28",
+              "label": {
+                "en": "28 °C",
+                "fr": "28 °C",
+                "de": "28 °C",
+                "es": "28 °C"
+              }
+            }
+          ]
+        },
+        {
+          "key": "direction",
+          "type": "multi_select",
+          "label": {
+            "en": "Direction",
+            "fr": "Sens",
+            "de": "Richtung",
+            "es": "Sentido"
+          },
+          "options": [
+            {
+              "value": "rising",
+              "label": {
+                "en": "Reached",
+                "fr": "Atteinte",
+                "de": "Erreicht",
+                "es": "Alcanzada"
+              }
+            },
+            {
+              "value": "falling",
+              "label": {
+                "en": "Falling back below",
+                "fr": "Repasse en dessous",
+                "de": "Fällt darunter",
+                "es": "Vuelve a bajar"
+              }
+            }
           ]
         }
       ],
       "variables": [
         {
-          "key": "target",
+          "key": "lake_name",
           "type": "string",
-          "label": { "en": "What moved", "fr": "Ce qui a bougé" }
-        }
-      ]
-    }
-  ],
-  "scene_actions": [
-    {
-      "key": "identify_device",
-      "label": { "en": "Identify a device", "fr": "Identifier un appareil" },
-      "description": {
-        "en": "Make a device signal itself (the demo light blinks).",
-        "fr": "Fait se signaler un appareil (la lampe de démonstration clignote)."
-      },
-      "timeout_seconds": 15,
-      "fields": [
+          "label": {
+            "en": "Lake name",
+            "fr": "Nom du lac",
+            "de": "Name des Sees",
+            "es": "Nombre del lago"
+          }
+        },
         {
-          "key": "device",
-          "type": "select",
-          "source": "devices",
-          "label": { "en": "Device", "fr": "Appareil" },
-          "required": true
-        }
-      ],
-      "outputs": [
+          "key": "temperature",
+          "type": "number",
+          "label": {
+            "en": "Water temperature (°C)",
+            "fr": "Température de l'eau (°C)",
+            "de": "Wassertemperatur (°C)",
+            "es": "Temperatura del agua (°C)"
+          }
+        },
         {
-          "key": "signalled",
-          "type": "boolean",
-          "label": { "en": "Device signalled", "fr": "Appareil signalé" }
+          "key": "threshold",
+          "type": "number",
+          "label": {
+            "en": "Threshold (°C)",
+            "fr": "Seuil (°C)",
+            "de": "Schwelle (°C)",
+            "es": "Umbral (°C)"
+          }
+        },
+        {
+          "key": "series",
+          "type": "string",
+          "label": {
+            "en": "Value code (current, forecast_48h)",
+            "fr": "Code de la valeur (current, forecast_48h)",
+            "de": "Kürzel des Werts (current, forecast_48h)",
+            "es": "Código del valor (current, forecast_48h)"
+          }
+        },
+        {
+          "key": "direction",
+          "type": "string",
+          "label": {
+            "en": "Direction code (rising, falling)",
+            "fr": "Code du sens (rising, falling)",
+            "de": "Kürzel der Richtung (rising, falling)",
+            "es": "Código del sentido (rising, falling)"
+          }
         }
       ]
     }
   ],
   "widgets": [
     {
-      "key": "demo_status",
-      "label": { "en": "Demo status", "fr": "État de la démo" },
-      "description": {
-        "en": "Live temperature and plug power, plug connection and observed location.",
-        "fr": "Température et puissance en direct, connexion de la prise, position observée."
+      "key": "lakes",
+      "label": {
+        "en": "Lakes",
+        "fr": "Lacs",
+        "de": "Seen",
+        "es": "Lagos"
       },
-      "icon": "activity",
-      "action_timeout_seconds": 15
+      "description": {
+        "en": "Water temperature of the followed lakes, and its forecast.",
+        "fr": "Température de l'eau des lacs suivis, et sa prévision.",
+        "de": "Wassertemperatur der verfolgten Seen und ihre Prognose.",
+        "es": "Temperatura del agua de los lagos seguidos y su previsión."
+      },
+      "icon": "droplet",
+      "settings": [
+        {
+          "key": "lake",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "Lake",
+            "fr": "Lac",
+            "de": "See",
+            "es": "Lago"
+          },
+          "description": {
+            "en": "Leave empty to list every lake (10 at most); pick one for its details.",
+            "fr": "Laissez vide pour lister tous les lacs (10 au plus) ; choisissez-en un pour son détail.",
+            "de": "Leer lassen, um alle Seen aufzulisten (höchstens 10); wähle einen für seine Details.",
+            "es": "Déjelo vacío para listar todos los lagos (10 como máximo); elija uno para ver su detalle."
+          }
+        },
+        {
+          "key": "show_forecast",
+          "type": "boolean",
+          "required": false,
+          "default": true,
+          "label": {
+            "en": "Show the forecast",
+            "fr": "Afficher la prévision",
+            "de": "Prognose anzeigen",
+            "es": "Mostrar la previsión"
+          }
+        },
+        {
+          "key": "show_link",
+          "type": "boolean",
+          "required": false,
+          "default": true,
+          "label": {
+            "en": "Show the Alplakes link",
+            "fr": "Afficher le lien Alplakes",
+            "de": "Alplakes-Link anzeigen",
+            "es": "Mostrar el enlace de Alplakes"
+          }
+        }
+      ]
     }
   ]
 }

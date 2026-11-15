@@ -1,33 +1,44 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeConfig, DEFAULT_CONFIG } from '../src/config.js';
+import { normalizeConfig, normalizeName, parseLakes, parsePoints } from '../src/config.js';
 
-test('normalizeConfig returns the defaults when called with no argument', () => {
-  assert.deepEqual(normalizeConfig(), DEFAULT_CONFIG);
+test('lakes: commas, semicolons and line breaks, duplicates removed', () => {
+  assert.deepEqual(parseLakes(' Léman, annecy;\nLEMAN,, Lac du Bourget '), [
+    'Léman',
+    'annecy',
+    'Lac du Bourget',
+  ]);
+  assert.deepEqual(parseLakes(undefined), []);
 });
 
-test('normalizeConfig keeps user values over the defaults', () => {
-  const config = normalizeConfig({ latitude: 45.5, longitude: -73.6, unit: 'fahrenheit' });
-  assert.equal(config.latitude, 45.5);
-  assert.equal(config.longitude, -73.6);
-  assert.equal(config.unit, 'fahrenheit');
+test('names compare without case, accents nor punctuation', () => {
+  assert.equal(normalizeName("Lac d'Annecy"), 'lac d annecy');
+  assert.equal(normalizeName('ZÜRICHSEE'), 'zurichsee');
+  assert.equal(normalizeName('Léman'), normalizeName('leman'));
 });
 
-test('normalizeConfig coerces numeric strings coming from a form', () => {
-  const config = normalizeConfig({ latitude: '48.8', longitude: '2.3', poll_frequency: '600' });
-  assert.equal(config.latitude, 48.8);
-  assert.equal(config.longitude, 2.3);
-  assert.equal(config.poll_frequency, 600);
-  assert.equal(typeof config.poll_frequency, 'number');
+test('points: lake, coordinates and an optional name', () => {
+  const { points, invalid } = parsePoints(
+    'Léman: 46.21074, 6.16131 Bains des Pâquis; annecy:45.86 6.17\nLéman: 46.21074, 6.16131; nowhere; Léman: 95, 6',
+  );
+  assert.deepEqual(points, [
+    { lake: 'Léman', lat: 46.2107, lng: 6.1613, label: 'Bains des Pâquis' },
+    { lake: 'annecy', lat: 45.86, lng: 6.17, label: null },
+  ]);
+  assert.deepEqual(invalid, ['nowhere', 'Léman: 95, 6']);
 });
 
-test('normalizeConfig falls back to the default for a missing numeric field', () => {
-  const config = normalizeConfig({ unit: 'celsius' });
-  assert.equal(config.poll_frequency, DEFAULT_CONFIG.poll_frequency);
-});
-
-test('GLADYS_PREFER_LOCAL defaults to true and only an explicit false disables it', () => {
-  assert.equal(normalizeConfig().GLADYS_PREFER_LOCAL, true);
-  assert.equal(normalizeConfig({ GLADYS_PREFER_LOCAL: true }).GLADYS_PREFER_LOCAL, true);
-  assert.equal(normalizeConfig({ GLADYS_PREFER_LOCAL: false }).GLADYS_PREFER_LOCAL, false);
+test('normalized configuration: defaults and unknown values', () => {
+  assert.deepEqual(normalizeConfig({}), {
+    lakes: [],
+    points: [],
+    invalidPoints: [],
+    depth: 0,
+    language: 'fr',
+  });
+  const config = normalizeConfig({ depth: '5', language: 'de', lakes: 'Thun' });
+  assert.equal(config.depth, 5);
+  assert.equal(config.language, 'de');
+  assert.equal(normalizeConfig({ depth: '3', language: 'it' }).depth, 0);
+  assert.equal(normalizeConfig({ language: 'it' }).language, 'fr');
 });

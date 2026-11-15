@@ -31,16 +31,20 @@ pushing.
 ## Architecture
 
 ```
-index.js                          SDK wiring only: handlers registered before connect()
-src/devices/index.js              registry of the device blueprints + dispatch helpers
-src/devices/<type>.js             one device type per file (buildDevice, onPoll, onSetValue...)
-src/scenes.js                     scene action handlers (manifest `scene_actions`)
-src/widgets.js                    dashboard widget handlers (manifest `widgets`)
+index.js                          SDK wiring only (handlers registered in src/app.js)
+src/app.js                        registers every SDK handler on the monitor, action and widget
+src/monitor.js                    followed lakes and points, hourly ticks, states, scene trigger
+src/alplakes.js                   Alplakes API client, lake catalogue, names, name search
+src/forecast.js                   value now, max 24/48 h and change in 24 h from a model series
+src/devices.js                    Gladys device of a lake or point (features, names, external ids)
+src/search.js                     "Find lakes" configuration action
+src/widgets.js                    dashboard widget `lakes`
+src/messages.js                   texts sent from the container, four languages
 src/config.js                     DEFAULT_CONFIG (mirrors the manifest defaults) + normalization
-src/weather.js                    example driver (Open-Meteo)
-gladys-assistant-integration.json manifest: name, config_schema, actions, image...
-docs/en.md, docs/fr.md            user documentation, re-hosted by Gladys (mandatory)
-test/                             node --test, against the SDK's fake Gladys (integration-sdk/testing)
+src/http.js, store.js             GET JSON, /data persistence
+gladys-assistant-integration.json manifest: config_schema, action, scene trigger, widget
+docs/{en,fr,de,es}.md             user documentation, re-hosted by Gladys (same sections)
+test/                             node --test, against the SDK's fake Gladys and recorded answers
 .github/scripts/release.mjs       release helpers (manifest bump, changelog), tested in test/
 ```
 
@@ -70,8 +74,10 @@ test/                             node --test, against the SDK's fake Gladys (in
   `type: "provider"`: 5.1.0). `test/manifest.test.js` ties the manifest to the
   code (defaults, action, scene and widget handlers): change both sides
   together.
-- **User-facing text** is bilingual (English and French): action messages,
-  manifest texts, and `docs/en.md` / `docs/fr.md`, kept in sync.
+- **User-facing text** is in four languages (English, French, German with
+  "du", Spanish with "usted"): action messages, manifest texts, widget texts,
+  feature names, and `docs/{en,fr,de,es}.md`, kept in sync
+  (`test/i18n.test.js`).
 - **Style.** Prettier formats, ESLint catches mistakes. Comments explain why,
   in English. Tests never touch the network.
 
@@ -251,3 +257,29 @@ long, et sur un « Sie »/« Ihr… » de politesse en allemand. Le store exige 
 - Docs `en`, `fr`, `de`, `es` avec les mêmes sections.
 - Chauffe, ouverture, sécurité : ne rien rendre pilotable « comme un thermostat » ou par un assistant
   vocal quand une erreur serait dangereuse (leçon d'OctoPrint).
+
+## Alplakes (propre à cette intégration)
+
+- API publique sans clé `https://alplakes-api.eawag.ch` (OpenAPI : `/openapi.json`), **limitée par client**
+  (429) : User-Agent identifiable exigé, pas plus vite que les modèles (pas de 3 h). Licence des données
+  **CC BY 4.0**, mention « Data: Alplakes, Eawag (CC BY 4.0) » (widget, section « about », docs, testé).
+- Catalogue : `/simulations/1d/metadata` (Simstrat, 132 lacs le 15/11/2026 une fois écartées les variantes
+  de recherche `*_python_enkf`) et `/simulations/metadata` (3D : `delft3d-flow`, `mitgcm`). Les métadonnées
+  n'ont **aucun nom lisible** : les noms EN/FR/DE/IT viennent de la liste statique du site
+  (`alplakes-eawag.s3…/static/website/metadata/master/list.json`), facultative (sans elle, les clés marchent).
+  Pas de noms espagnols : table à la main pour les grands lacs.
+- **Les clés diffèrent entre 1D, 3D et site** : bassins 1D `upperzurich`/`lowerzurich` → 3D et site
+  `zurich` ; idem Constance, Lugano, 4 bassins de Lucerne (3D `mitgcm/lucerne`) ; 1D `aegeri` = 3D/site
+  `ageri`. Table `BASINS` de `src/alplakes.js`. Caldonazzo a un modèle 3D arrêté fin 2023 : un modèle 3D
+  ne compte que si son `end_date` n'est pas passé.
+- Séries : `/simulations/1d/point/simstrat/<lac>/<début>/<fin>/<profondeur>` (variable `T`, pas de 3 h
+  calé à hh:00:02.88) et `/simulations/point/<modèle>/<lac>/<début>/<fin>/<prof>/<lat>/<lng>?variables=temperature`
+  (pas de 3 h). Dates `YYYYmmddHHMM` UTC. La prévision court environ 3 jours. Profondeur 0 acceptée (1D :
+  0 m ; 3D : la maille de surface, 0,01 à 1 m). Un lac inconnu ou une période absente : **400** avec `detail`.
+- Le point 3D répond **toujours** avec la maille la plus proche, même à 11 km sur la terre ferme :
+  `distance.data` (m) > 1500 → « point trop loin du lac ».
+- Fonctionnalités en `temperature-sensor/probe` (cœur ≥ 5.2.0) pour la température et l'évolution :
+  `decimal` entrerait dans la moyenne de température d'une pièce. Maxima en `temperature-sensor/max`.
+- Un seul déclencheur `threshold_crossed` (seuils entiers 10–28 °C, valeur actuelle ou max 48 h,
+  hystérésis 0,3 °C) : sa valeur ajoutée sur le déclencheur d'appareil du cœur est l'hystérésis, la
+  prévision et le nom du lac en variable. Un filtre `multi_select` reçoit le nombre converti en chaîne.
